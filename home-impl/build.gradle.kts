@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kapt)
 }
 
 apply("../commonUiModule.gradle")
@@ -45,4 +46,8 @@ dependencies {
 
     implementation(project(":words-data"))
     implementation(project(":home-api"))
+
+    // Hilt Dependency Injection
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }

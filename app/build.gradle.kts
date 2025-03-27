@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.ksp)
+    //alias(libs.plugins.ksp)
     alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.kapt)
     alias(libs.plugins.kotlinSerialization)
@@ -75,8 +75,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
+
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.retrofit.adapters.result)
     implementation(libs.retrofit)

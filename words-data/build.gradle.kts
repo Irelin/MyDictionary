@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -42,6 +44,10 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
     //implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
