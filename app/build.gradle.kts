@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     //alias(libs.plugins.ksp)
-    alias(libs.plugins.hiltAndroid)
+    //alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.kapt)
     alias(libs.plugins.kotlinSerialization)
 }
@@ -81,12 +81,16 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     api(libs.kotlinx.serialization.json)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    //implementation(libs.hilt.android)
+    //kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.hilt.navigation.compose)
+    //implementation(libs.androidx.hilt.navigation.compose)
     implementation(project(":home-impl"))
     implementation(project(":study"))
     implementation(project(":words-data"))
+    implementation(project(":core"))
+
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

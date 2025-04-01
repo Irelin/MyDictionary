@@ -46,8 +46,11 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     //implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation(libs.androidx.hilt.navigation.compose)
+    /*implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)*/
+
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

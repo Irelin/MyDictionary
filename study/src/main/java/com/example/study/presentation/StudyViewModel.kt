@@ -5,14 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.study.StudyWordUiState
 import com.example.study.domain.GetStudyExerciseUseCase
 import com.example.study.presentation.ui.StudyWordUiMapper
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
 class StudyViewModel @Inject constructor(private val getStudyExercise: GetStudyExerciseUseCase,
                                          private val studyWordUiMapper: StudyWordUiMapper) :
     ViewModel() {

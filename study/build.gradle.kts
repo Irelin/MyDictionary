@@ -46,7 +46,6 @@ dependencies {
 
     implementation(project(":words-data"))
 
-    // Hilt Dependency Injection
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

@@ -4,10 +4,8 @@ plugins {
     alias(libs.plugins.kapt)
 }
 
-apply("../commonUiModule.gradle")
-
 android {
-    namespace = "com.example.home"
+    namespace = "com.example.core"
     compileSdk = 34
 
     defaultConfig {
@@ -27,28 +25,23 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures {
-        buildConfig = true
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.12"
+        jvmTarget = "11"
     }
 }
 
 dependencies {
 
-    implementation(project(":words-data"))
-    implementation(project(":home-api"))
-    implementation(project(":core"))
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
-
 }
