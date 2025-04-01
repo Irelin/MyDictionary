@@ -4,10 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.home.NewWordUiState
 import com.example.home.WordsListUiState
-import com.example.home.domain.AddWordUseCase
 import com.example.home.domain.GetLastWordsUseCase
 import com.example.home.presentation.ui.WordUiMapper
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.home_api.usecase.AddWord
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,9 +14,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
 class HomeViewModel @Inject constructor(private val getLastWords: GetLastWordsUseCase,
-                                        private val addNewWord: AddWordUseCase,
+                                        private val addNewWord: AddWord,
                                         private val wordUiMapper: WordUiMapper) :
     ViewModel() {
     private val _newWordUiState = MutableStateFlow(NewWordUiState())

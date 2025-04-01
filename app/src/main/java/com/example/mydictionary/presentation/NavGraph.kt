@@ -1,5 +1,6 @@
 package com.example.mydictionary.presentation
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.WindowInsets
@@ -27,6 +28,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.home.presentation.HomeScreen
+import com.example.home.presentation.HomeViewModel
 import com.example.mydictionary.R
 import com.example.study.presentation.StudyScreen
 import java.util.Locale
@@ -42,7 +44,13 @@ fun NavGraph(
         startDestination = startDestination
     ) {
         composable(NavDestinations.HOME_ROUTE) {
-            HomeScreen(modifier = modifier)
+            val viewModel: HomeViewModel = daggerViewModel {
+                Log.i("DICTIONARY_LOG", "create VM: Screen2ViewModel")
+
+                // option #2 create DI component and instantly get ViewModel instance
+                DaggerHomeComponent.builder().build().getViewModel()
+            }
+            HomeScreen(viewModel, modifier = modifier)
         }
         composable(NavDestinations.STUDY_ROUTE) {
             StudyScreen()

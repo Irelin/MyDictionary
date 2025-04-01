@@ -23,13 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.home.NewWordUiState
 import com.example.home.WordsListUiState
 import com.example.home.presentation.ui.WordUI
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), modifier: Modifier = Modifier) {
+fun HomeScreen(viewModel: HomeViewModel, modifier: Modifier = Modifier) {
     val newWordUiState by viewModel.newWordUiState.collectAsState()
     val wordsListUiState by viewModel.wordsListUiState.collectAsState()
 

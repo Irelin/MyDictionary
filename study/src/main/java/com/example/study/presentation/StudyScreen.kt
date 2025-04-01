@@ -26,13 +26,12 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.study.presentation.ui.StudyWordUI
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun StudyScreen(viewModel: StudyViewModel = hiltViewModel()) {
+fun StudyScreen(viewModel: StudyViewModel) {
     val wordsListState by viewModel.wordsListUiState.collectAsState()
 
     val pagerState = rememberPagerState(pageCount = {
