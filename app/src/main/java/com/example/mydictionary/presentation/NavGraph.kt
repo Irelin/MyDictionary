@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -45,13 +46,7 @@ fun NavGraph(
         startDestination = startDestination
     ) {
         composable(NavDestinations.HOME_ROUTE) {
-            val viewModel: HomeViewModel = daggerViewModel {
-                Log.i("DICTIONARY_LOG", "create VM: Screen2ViewModel")
-
-                // option #2 create DI component and instantly get ViewModel instance
-                DaggerHomeComponent.builder().build().getViewModel()
-            }
-            HomeScreen(viewModel, modifier = modifier)
+            HomeScreen(modifier = modifier)
         }
         composable(NavDestinations.STUDY_ROUTE) {
             // StudyScreen()
