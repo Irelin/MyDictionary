@@ -1,15 +1,13 @@
 package com.example.mydictionary
 
-import android.app.Application
-import com.example.mydictionary.di.AppComponent
-import com.example.mydictionary.di.DaggerAppComponent
+import com.example.core.di.BaseApp
+import com.example.mydictionary.di.DaggerAppComponentImpl
 
 //@HiltAndroidApp
-class DictionaryApplication: Application() {
-    lateinit var appComponent: AppComponent
+class DictionaryApplication: BaseApp() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.factory().create(this)
+        appComponent = DaggerAppComponentImpl.factory().create(this)
     }
 }

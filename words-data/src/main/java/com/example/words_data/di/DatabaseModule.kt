@@ -10,6 +10,7 @@ import javax.inject.Singleton
 
 @Module
 class DatabaseModule {
+
     @Provides
     @Singleton
     fun provideRepository(database: WordsDatabase, mapper: WordDBOToDomainMapper): WordsRepository =
