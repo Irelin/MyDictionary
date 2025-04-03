@@ -27,6 +27,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.home.di.DaggerHomeComponent
 import com.example.home.presentation.HomeScreen
 import com.example.home.presentation.HomeViewModel
 import com.example.mydictionary.R
@@ -53,7 +54,7 @@ fun NavGraph(
             HomeScreen(viewModel, modifier = modifier)
         }
         composable(NavDestinations.STUDY_ROUTE) {
-            StudyScreen()
+            // StudyScreen()
         }
         composable(NavDestinations.PROFILE_ROUTE) {
 

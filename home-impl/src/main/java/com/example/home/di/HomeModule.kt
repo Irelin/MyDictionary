@@ -14,17 +14,25 @@ class HomeModule {
     @Provides
     @HomeScope
     fun provideViewModel(
-        getLastWords: GetLastWordsUseCase,
-        addWord: AddWord,
+        //getLastWords: GetLastWordsUseCase,
+        //addWord: AddWord,
         wordUiMapper: WordUiMapper
-    ): HomeViewModel = HomeViewModel(getLastWords, addWord, wordUiMapper)
+    ): HomeViewModel {
+        return HomeViewModel(
+            //getLastWords,
+            //addWord,
+            wordUiMapper,
+            )
+    }
 
-    @Provides
-    @HomeScope
-    fun provideGetLastWords(repository: WordsRepository): GetLastWordsUseCase =
-        GetLastWordsUseCase(repository)
+//    @Provides
+//    @HomeScope
+//    fun provideGetLastWords(
+//        repository: WordsRepository
+//    ): GetLastWordsUseCase =
+//        GetLastWordsUseCase(repository)
 
-    @Provides
-    @HomeScope
-    fun provideAddWord(repository: WordsRepository): AddWord = AddWordUseCase(repository)
+//    @Provides
+//    @HomeScope
+//    fun provideAddWord(repository: WordsRepository): AddWord = AddWordUseCase(repository)
 }

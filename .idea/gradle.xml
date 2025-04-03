@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/words-data" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

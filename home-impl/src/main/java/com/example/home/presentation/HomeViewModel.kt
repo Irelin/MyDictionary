@@ -14,10 +14,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(private val getLastWords: GetLastWordsUseCase,
-                                        private val addNewWord: AddWord,
-                                        private val wordUiMapper: WordUiMapper) :
-    ViewModel() {
+class HomeViewModel @Inject constructor(
+   // private val getLastWords: GetLastWordsUseCase,
+   // private val addNewWord: AddWord,
+    private val wordUiMapper: WordUiMapper
+) : ViewModel() {
     private val _newWordUiState = MutableStateFlow(NewWordUiState())
     val newWordUiState: StateFlow<NewWordUiState> = _newWordUiState.asStateFlow()
 
@@ -48,7 +49,7 @@ class HomeViewModel @Inject constructor(private val getLastWords: GetLastWordsUs
         newWordUiState.value.apply {
             if (isWordValid(word, translation)) {
                 viewModelScope.launch {
-                    addNewWord(word, translation)
+                    //addNewWord(word, translation)
                     resetNewWordState()
                 }
             } else {
@@ -62,9 +63,9 @@ class HomeViewModel @Inject constructor(private val getLastWords: GetLastWordsUs
     private fun getWords() {
         viewModelScope.launch {
             _wordsListUiState.value = WordsListUiState.Loading
-            getLastWords(10).collect { items ->
-                _wordsListUiState.value = WordsListUiState.Success(items.map { wordUiMapper.map(it) })
-            }
+            //getLastWords(10).collect { items ->
+            //    _wordsListUiState.value = WordsListUiState.Success(items.map { wordUiMapper.map(it) })
+            //}
         }
     }
 

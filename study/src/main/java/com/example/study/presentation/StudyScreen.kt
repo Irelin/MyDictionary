@@ -32,6 +32,7 @@ import kotlin.math.absoluteValue
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun StudyScreen(viewModel: StudyViewModel) {
+
     val wordsListState by viewModel.wordsListUiState.collectAsState()
 
     val pagerState = rememberPagerState(pageCount = {
