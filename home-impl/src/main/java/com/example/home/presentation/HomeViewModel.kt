@@ -1,5 +1,6 @@
 package com.example.home.presentation
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.home.NewWordUiState
@@ -17,7 +18,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
    // private val getLastWords: GetLastWordsUseCase,
    // private val addNewWord: AddWord,
-    private val wordUiMapper: WordUiMapper
+    private val wordUiMapper: WordUiMapper,
 ) : ViewModel() {
     private val _newWordUiState = MutableStateFlow(NewWordUiState())
     val newWordUiState: StateFlow<NewWordUiState> = _newWordUiState.asStateFlow()

@@ -1,5 +1,6 @@
 package com.example.home.di
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -20,7 +21,7 @@ class HomeModule {
     fun provideViewModel(
         //getLastWords: GetLastWordsUseCase,
         //addWord: AddWord,
-        wordUiMapper: WordUiMapper
+        wordUiMapper: WordUiMapper,
     ): HomeViewModel {
         return HomeViewModel(
             //getLastWords,
