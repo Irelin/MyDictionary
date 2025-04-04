@@ -44,7 +44,8 @@ android {
 
 dependencies {
 
-    implementation(project(":words-data"))
+    implementation(project(":words_api"))
+    implementation(project(":words_impl"))
     implementation(project(":home-api"))
     implementation(project(":core"))
 

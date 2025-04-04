@@ -44,7 +44,8 @@ android {
 
 dependencies {
 
-    implementation(project(":words-data"))
+    implementation(project(":words_api"))
+    implementation(project(":words_impl"))
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)

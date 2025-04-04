@@ -4,12 +4,10 @@ import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.home.domain.AddWordUseCase
-import com.example.home.domain.GetLastWordsUseCase
 import com.example.home.presentation.HomeViewModel
 import com.example.home.presentation.ui.WordUiMapper
-import com.example.home_api.usecase.AddWord
-import com.example.words_data.repository.WordsRepository
+import com.example.words_api.domain.usecase.AddWord
+import com.example.words_api.domain.usecase.GetLastWords
 import dagger.Module
 import dagger.Provides
 import javax.inject.Provider
@@ -19,13 +17,13 @@ class HomeModule {
     @Provides
     @HomeScope
     fun provideViewModel(
-        //getLastWords: GetLastWordsUseCase,
-        //addWord: AddWord,
+        getLastWords: GetLastWords,
+        addWord: AddWord,
         wordUiMapper: WordUiMapper,
     ): HomeViewModel {
         return HomeViewModel(
-            //getLastWords,
-            //addWord,
+            getLastWords,
+            addWord,
             wordUiMapper,
             )
     }
