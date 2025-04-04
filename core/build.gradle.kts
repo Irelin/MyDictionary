@@ -44,4 +44,6 @@ dependencies {
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+    implementation(project(":words_api"))
 }

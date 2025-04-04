@@ -1,6 +1,6 @@
 package com.example.home.presentation.ui
 
-import com.example.words_data.models.Word
+import com.example.words_api.domain.models.Word
 import javax.inject.Inject
 
 class WordUiMapper @Inject constructor() {
