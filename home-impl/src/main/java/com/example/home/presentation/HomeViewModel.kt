@@ -1,6 +1,5 @@
 package com.example.home.presentation
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.home.NewWordUiState
@@ -59,6 +58,10 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun clearNewWord() {
+        resetNewWordState()
     }
 
     private fun getWords() {

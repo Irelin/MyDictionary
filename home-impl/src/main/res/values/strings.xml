@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_hi_user">Hi %1$s!</string>
+    <string name="profile_learned_words">You\'ve learned %1$d/%2$d words</string>
+
+    <string name="new_word_title">Add new word</string>
+    <string name="new_word_text">Word</string>
+    <string name="new_word_translation">Translation</string>
+    <string name="new_word_save_btn">Save</string>
+    <string name="new_word_clear_btn">Clear</string>
+    <string name="new_word_category_btn">Category</string>
+
+    <string name="my_words_title">My words</string>
+    <string name="my_words_empty">No words added</string>
+
+    <string name="view_all">View all</string>
+</resources>

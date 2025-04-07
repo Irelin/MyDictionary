@@ -84,6 +84,7 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(project(":home-impl"))
     implementation(project(":study"))
+    implementation(project(":dictionary"))
     implementation(project(":core"))
     implementation(project(":core_data"))
     implementation(project(":words_api"))

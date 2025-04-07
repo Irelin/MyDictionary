@@ -1,35 +1,48 @@
 package com.example.home.presentation
 
-import android.util.Log
+import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.home.NewWordUiState
+import com.example.home.R
 import com.example.home.WordsListUiState
-import com.example.home.di.DaggerHomeComponent
 import com.example.home.di.HomeComponent
 import com.example.home.presentation.ui.WordUI
 
@@ -40,20 +53,88 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         component.provideViewModelFactory()
     }
     val viewModel = viewModel(HomeViewModel::class, factory = viewModelFactory)
-    Log.i("DICTIONARY_LOG", "recomposition, VM: $viewModel")
 
     val newWordUiState by viewModel.newWordUiState.collectAsState()
     val wordsListUiState by viewModel.wordsListUiState.collectAsState()
 
+    /*val state = rememberScrollState()
+    LaunchedEffect(Unit) { state.animateScrollTo(100)}*/
+
     Column(
+        modifier = Modifier
+            .background(Color.White)
+            .padding(16.dp),
+            //.verticalScroll(state),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        AddNewWord(newWordUiState = newWordUiState,
+        Profile()
+        LogoDictionary()
+        AddNewWord(
+            newWordUiState = newWordUiState,
             onWordChange = { viewModel.updateWord(it) },
             onTranslationChange = { viewModel.updateTranslation(it) },
-            onSaveClick = { viewModel.saveNewWord() })
-        WordsListSection(wordsListUiState)
+            onSaveClick = { viewModel.saveNewWord() },
+            onClearClick = { viewModel.clearNewWord() })
+        WordsList(wordsListUiState)
     }
+}
+
+@Composable
+fun Profile() {
+    Row(
+        modifier = Modifier
+            .clip(shape = RoundedCornerShape(12.dp))
+            .background(Color.LightGray)
+            .fillMaxWidth()
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.account_image_default),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(100.dp)
+                .clip(RoundedCornerShape(16.dp))
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.profile_hi_user, "User"),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = stringResource(R.string.profile_learned_words, 50, 100),
+                fontSize = 14.sp,
+                color = Color.Gray
+            )
+            LinearProgressIndicator(
+                progress = { 0.5f },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                color = Color.Red,
+                trackColor = Color.Gray
+            )
+        }
+    }
+}
+
+@Composable
+fun LogoDictionary() {
+    Image(
+        painter = painterResource(id = R.drawable.home_dictionary_logo),
+        contentDescription = null,
+        contentScale = ContentScale.FillWidth,
+        modifier = Modifier
+            .padding(8.dp)
+            .size(150.dp)
+    )
 }
 
 @Composable
@@ -61,53 +142,65 @@ fun AddNewWord(
     newWordUiState: NewWordUiState,
     onWordChange: (String) -> Unit,
     onTranslationChange: (String) -> Unit,
-    onSaveClick: () -> Unit
+    onSaveClick: () -> Unit,
+    onClearClick: () -> Unit
 ) {
-    Card(
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
-        ),
+    /*Column(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {*/
+    Text(
+        modifier = Modifier
+            .fillMaxWidth(),
+        textAlign = TextAlign.Start,
+        text = stringResource(R.string.new_word_title),
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Bold
+    )
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth(),
+        value = newWordUiState.word,
+        onValueChange = onWordChange,
+        label = { Text(stringResource(R.string.new_word_text)) },
+        isError = newWordUiState.word.isEmpty() && newWordUiState.isInvalidWord
+    )
+    OutlinedTextField(
+        modifier = Modifier
+            .fillMaxWidth(),
+        value = newWordUiState.translation,
+        onValueChange = onTranslationChange,
+        label = { Text(stringResource(R.string.new_word_translation)) },
+        isError = newWordUiState.translation.isEmpty() && newWordUiState.isInvalidWord
+    )
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(vertical = 8.dp),
+        horizontalArrangement = Arrangement.End
     ) {
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(text = "Add new word", fontSize = 20.sp)
-            OutlinedTextField(
-                value = newWordUiState.word,
-                onValueChange = onWordChange,
-                label = { Text("Word") },
-                isError = newWordUiState.word.isEmpty() && newWordUiState.isInvalidWord
-            )
-            OutlinedTextField(
-                value = newWordUiState.translation,
-                onValueChange = onTranslationChange,
-                label = { Text("Translation") },
-                isError = newWordUiState.translation.isEmpty() && newWordUiState.isInvalidWord
-            )
-            Button(onClick = onSaveClick, modifier = Modifier.padding(top = 8.dp)) {
-                Text(text = "Save")
-            }
-            Button(onClick = onSaveClick) {
-                Text(text = "Choose category")
-            }
+        Button(onClick = onSaveClick) {
+            Text(text = stringResource(R.string.new_word_save_btn))
+        }
+        Button(onClick = onClearClick, modifier = Modifier.padding(horizontal = 8.dp)) {
+            Text(text = stringResource(R.string.new_word_clear_btn))
+        }
+        Button(onClick = onSaveClick) {
+            Text(text = stringResource(R.string.new_word_category_btn))
         }
     }
+    //}
 }
 
 @Composable
-fun WordsListSection(wordsListState: WordsListUiState) {
+fun WordsList(wordsListState: WordsListUiState) {
     when (wordsListState) {
         is WordsListUiState.Loading -> WordsLoading()
         is WordsListUiState.Success -> WordsList(
             words = wordsListState.words
         )
+
         is WordsListUiState.Error -> EmptyWordsList()
     }
 }
@@ -118,11 +211,10 @@ fun WordsList(words: List<WordUI>) {
         EmptyWordsList()
         return
     }
-    Text(text = "My words", fontSize = 20.sp)
+    ListTitle(R.string.my_words_title)
     LazyColumn(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+            .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(words) {
@@ -131,22 +223,47 @@ fun WordsList(words: List<WordUI>) {
             }
         }
     }
-    if (words.size == 10) {
-        TextButton(onClick = {}) {
-            Text("View all")
+}
+
+@Composable
+fun ListTitle(@StringRes titleRes: Int) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = stringResource(titleRes),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+        TextButton(
+            onClick = {}) {
+            Text(stringResource(R.string.view_all))
         }
     }
 }
 
 @Composable
 fun Word(word: WordUI) {
-    Text(text = "${word.originValue} - ${word.translatedValue}")
+    Column(
+        modifier = Modifier
+            .padding(vertical = 4.dp)
+            .clip(shape = RoundedCornerShape(12.dp))
+            .background(Color.LightGray)
+            .fillMaxWidth()
+            .padding(8.dp), horizontalAlignment = Alignment.Start
+    ) {
+        Text(text = word.originValue, fontSize = 20.sp)
+        Text(text = word.translatedValue, fontSize = 16.sp)
+    }
 }
 
 @Composable
 fun EmptyWordsList() {
     Box(contentAlignment = Alignment.Center) {
-        Text(text = "No words added")
+        Text(text = stringResource(R.string.my_words_empty))
     }
 }
 
@@ -178,8 +295,14 @@ fun CategoriesList(categories: List<WordUI>) {
 
 @Preview
 @Composable
+fun AccountPreview() {
+    Profile()
+}
+
+@Preview
+@Composable
 fun AddNewWordPreview() {
-    AddNewWord(NewWordUiState(), {}, {}, {})
+    AddNewWord(NewWordUiState(), {}, {}, {}, {})
 }
 
 @Preview

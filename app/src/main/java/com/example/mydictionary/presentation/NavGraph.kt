@@ -28,6 +28,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.dictionary.presentation.DictionaryScreen
 import com.example.home.di.DaggerHomeComponent
 import com.example.home.presentation.HomeScreen
 import com.example.home.presentation.HomeViewModel
@@ -51,8 +52,8 @@ fun NavGraph(
         composable(NavDestinations.STUDY_ROUTE) {
             // StudyScreen()
         }
-        composable(NavDestinations.PROFILE_ROUTE) {
-
+        composable(NavDestinations.DICTIONARY_ROUTE) {
+            DictionaryScreen()
         }
     }
 }
@@ -101,6 +102,7 @@ object NavDestinations {
     const val HOME_ROUTE = "home"
     const val STUDY_ROUTE = "study"
     const val PROFILE_ROUTE = "profile"
+    const val DICTIONARY_ROUTE = "dictionary"
 }
 
 enum class NavBottomTabs(
@@ -109,6 +111,7 @@ enum class NavBottomTabs(
     val route: String
 ) {
     HOME(R.string.route_home_title, R.drawable.ic_tab_home, NavDestinations.HOME_ROUTE),
-    STUDY(R.string.route_study_title, R.drawable.ic_tab_study, NavDestinations.STUDY_ROUTE),
-    PROFILE(R.string.route_profile_title, R.drawable.ic_tab_profile, NavDestinations.PROFILE_ROUTE)
+    STUDY(R.string.route_study_title, R.drawable.ic_tab_exercise, NavDestinations.STUDY_ROUTE),
+    //PROFILE(R.string.route_profile_title, R.drawable.ic_tab_profile, NavDestinations.PROFILE_ROUTE)
+    DICTIONARY(R.string.route_dictionary_title, R.drawable.ic_tab_dictionary, NavDestinations.DICTIONARY_ROUTE)
 }
