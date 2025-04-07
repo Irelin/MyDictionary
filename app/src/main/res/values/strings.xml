@@ -3,4 +3,5 @@
     <string name="route_home_title">Home</string>
     <string name="route_study_title">Study</string>
     <string name="route_profile_title">Profile</string>
+    <string name="route_dictionary_title">Dictionary</string>
 </resources>
