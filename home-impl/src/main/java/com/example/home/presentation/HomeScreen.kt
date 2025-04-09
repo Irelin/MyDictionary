@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,7 +23,6 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -57,14 +57,12 @@ fun HomeScreen(modifier: Modifier = Modifier) {
     val newWordUiState by viewModel.newWordUiState.collectAsState()
     val wordsListUiState by viewModel.wordsListUiState.collectAsState()
 
-    /*val state = rememberScrollState()
-    LaunchedEffect(Unit) { state.animateScrollTo(100)}*/
-
     Column(
         modifier = Modifier
             .background(Color.White)
-            .padding(16.dp),
-            //.verticalScroll(state),
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp)
+            .padding(bottom = 48.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Profile()
@@ -76,6 +74,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             onSaveClick = { viewModel.saveNewWord() },
             onClearClick = { viewModel.clearNewWord() })
         WordsList(wordsListUiState)
+        CategoriesList(wordsListUiState)
     }
 }
 
@@ -196,25 +195,24 @@ fun AddNewWord(
 @Composable
 fun WordsList(wordsListState: WordsListUiState) {
     when (wordsListState) {
-        is WordsListUiState.Loading -> WordsLoading()
+        is WordsListUiState.Loading -> DataLoading()
         is WordsListUiState.Success -> WordsList(
             words = wordsListState.words
         )
 
-        is WordsListUiState.Error -> EmptyWordsList()
+        is WordsListUiState.Error -> DataLoadingError()
     }
 }
 
 @Composable
 fun WordsList(words: List<WordUI>) {
-    if (words.isEmpty()) {
-        EmptyWordsList()
+    if (words.isEmpty())
         return
-    }
     ListTitle(R.string.my_words_title)
     LazyColumn(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .heightIn(0.dp, 400.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(words) {
@@ -261,35 +259,79 @@ fun Word(word: WordUI) {
 }
 
 @Composable
-fun EmptyWordsList() {
-    Box(contentAlignment = Alignment.Center) {
-        Text(text = stringResource(R.string.my_words_empty))
-    }
+fun DataLoadingError() {
+    Text(text = stringResource(R.string.data_loading_error))
 }
 
 @Composable
-fun WordsLoading() {
-    Box(
-        Modifier
-            .padding(8.dp)
-            .fillMaxWidth(), contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator()
+fun DataLoading() {
+    CircularProgressIndicator()
+}
+
+@Composable
+fun CategoriesList(wordsListState: WordsListUiState) {
+    when (wordsListState) {
+        is WordsListUiState.Loading -> DataLoading()
+        is WordsListUiState.Success -> CategoriesList(
+            categories = wordsListState.words
+        )
+        is WordsListUiState.Error -> DataLoadingError()
     }
 }
 
 @Composable
 fun CategoriesList(categories: List<WordUI>) {
-    if (categories.isEmpty()) {
-        EmptyWordsList()
+    if (categories.isEmpty())
         return
-    }
-    LazyColumn {
+    ListTitle(R.string.my_categories_title)
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(0.dp, 400.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         items(categories.sortedByDescending { it.id }) {
             key(it.id) {
-                Word(it)
+                Category(it)
             }
         }
+    }
+}
+
+@Composable
+fun Category(category: WordUI) {
+    Row(
+        modifier = Modifier
+            .padding(vertical = 4.dp)
+            .clip(shape = RoundedCornerShape(12.dp))
+            .background(Color.LightGray)
+            .fillMaxWidth()
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.icon_category_default),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .size(50.dp)
+        )
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 12.dp)
+                .weight(1f)
+        ) {
+            Text(text = category.originValue, fontSize = 20.sp)
+            Text(text = stringResource(R.string.my_category_words_count, 5), fontSize = 16.sp)
+        }
+        Image(
+            painter = painterResource(id = R.drawable.icon_category_view_arrow),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .size(24.dp)
+        )
     }
 }
 
