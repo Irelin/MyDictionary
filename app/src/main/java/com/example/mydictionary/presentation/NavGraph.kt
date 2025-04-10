@@ -50,7 +50,7 @@ fun NavGraph(
             HomeScreen(modifier = modifier)
         }
         composable(NavDestinations.STUDY_ROUTE) {
-            // StudyScreen()
+            StudyScreen()
         }
         composable(NavDestinations.DICTIONARY_ROUTE) {
             DictionaryScreen()
