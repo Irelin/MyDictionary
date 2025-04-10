@@ -15,7 +15,7 @@ data class CategoryWithWordsDBO(
     val words: List<WordDBO>
 )
 
-@Entity(primaryKeys = ["categoryId", "wordId"])
+@Entity(primaryKeys = ["categoryId", "wordId"], tableName = "categories_words")
 data class CategoryWordCrossRef(
     val categoryId: Long,
     val wordId: Long

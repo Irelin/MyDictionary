@@ -89,6 +89,8 @@ dependencies {
     implementation(project(":core_data"))
     implementation(project(":words_api"))
     implementation(project(":words_impl"))
+    implementation(project(":categories_api"))
+    implementation(project(":categories_impl"))
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)

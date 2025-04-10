@@ -1,5 +1,6 @@
-package com.example.home.presentation.ui
+package com.example.home.presentation.mapper
 
+import com.example.home.presentation.models.WordUI
 import com.example.words_api.domain.models.Word
 import javax.inject.Inject
 

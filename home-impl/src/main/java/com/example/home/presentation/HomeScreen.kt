@@ -33,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -40,11 +41,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.home.CategoriesListUiState
 import com.example.home.NewWordUiState
 import com.example.home.R
 import com.example.home.WordsListUiState
 import com.example.home.di.HomeComponent
-import com.example.home.presentation.ui.WordUI
+import com.example.home.presentation.models.CategoryUI
+import com.example.home.presentation.models.WordUI
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
@@ -56,6 +59,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 
     val newWordUiState by viewModel.newWordUiState.collectAsState()
     val wordsListUiState by viewModel.wordsListUiState.collectAsState()
+    val categoriesListUiState by viewModel.categoriesListUiState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -74,7 +78,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             onSaveClick = { viewModel.saveNewWord() },
             onClearClick = { viewModel.clearNewWord() })
         WordsList(wordsListUiState)
-        CategoriesList(wordsListUiState)
+        CategoriesList(categoriesListUiState)
     }
 }
 
@@ -269,18 +273,18 @@ fun DataLoading() {
 }
 
 @Composable
-fun CategoriesList(wordsListState: WordsListUiState) {
-    when (wordsListState) {
-        is WordsListUiState.Loading -> DataLoading()
-        is WordsListUiState.Success -> CategoriesList(
-            categories = wordsListState.words
+fun CategoriesList(categoriesListState: CategoriesListUiState) {
+    when (categoriesListState) {
+        is CategoriesListUiState.Loading -> DataLoading()
+        is CategoriesListUiState.Success -> CategoriesList(
+            categories = categoriesListState.categories
         )
-        is WordsListUiState.Error -> DataLoadingError()
+        is CategoriesListUiState.Error -> DataLoadingError()
     }
 }
 
 @Composable
-fun CategoriesList(categories: List<WordUI>) {
+fun CategoriesList(categories: List<CategoryUI>) {
     if (categories.isEmpty())
         return
     ListTitle(R.string.my_categories_title)
@@ -299,7 +303,7 @@ fun CategoriesList(categories: List<WordUI>) {
 }
 
 @Composable
-fun Category(category: WordUI) {
+fun Category(category: CategoryUI) {
     Row(
         modifier = Modifier
             .padding(vertical = 4.dp)
@@ -322,8 +326,8 @@ fun Category(category: WordUI) {
                 .padding(horizontal = 12.dp)
                 .weight(1f)
         ) {
-            Text(text = category.originValue, fontSize = 20.sp)
-            Text(text = stringResource(R.string.my_category_words_count, 5), fontSize = 16.sp)
+            Text(text = category.name, fontSize = 20.sp)
+            Text(text = pluralStringResource(R.plurals.category_words_count, category.wordsCount, category.wordsCount), fontSize = 16.sp)
         }
         Image(
             painter = painterResource(id = R.drawable.icon_category_view_arrow),
