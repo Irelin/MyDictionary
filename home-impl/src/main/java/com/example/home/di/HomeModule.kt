@@ -1,11 +1,12 @@
 package com.example.home.di
 
-import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.categories_api.domain.usecase.GetLastCategories
 import com.example.home.presentation.HomeViewModel
-import com.example.home.presentation.ui.WordUiMapper
+import com.example.home.presentation.mapper.CategoryUiMapper
+import com.example.home.presentation.mapper.WordUiMapper
 import com.example.words_api.domain.usecase.AddWord
 import com.example.words_api.domain.usecase.GetLastWords
 import dagger.Module
@@ -19,13 +20,17 @@ class HomeModule {
     fun provideViewModel(
         getLastWords: GetLastWords,
         addWord: AddWord,
+        getLastCategories: GetLastCategories,
         wordUiMapper: WordUiMapper,
+        categoryUiMapper: CategoryUiMapper
     ): HomeViewModel {
         return HomeViewModel(
             getLastWords,
             addWord,
+            getLastCategories,
             wordUiMapper,
-            )
+            categoryUiMapper
+        )
     }
 
     @Provides

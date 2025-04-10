@@ -1,6 +1,7 @@
 package com.example.core_data.di
 
 import android.content.Context
+import com.example.core_data.dao.CategoriesDao
 import com.example.core_data.dao.WordsDao
 import com.example.core_data.datasource.WordsDatabase
 import dagger.Module
@@ -16,4 +17,8 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun provideWordsDao(wordsDatabase: WordsDatabase): WordsDao = wordsDatabase.wordsDao()
+
+    @Provides
+    @Singleton
+    fun provideCategoriesDao(wordsDatabase: WordsDatabase): CategoriesDao = wordsDatabase.categoriesDao()
 }
