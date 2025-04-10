@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -184,13 +186,14 @@ fun AddNewWord(
         horizontalArrangement = Arrangement.End
     ) {
         Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.new_word_save_btn))
+            Text(text = stringResource(R.string.new_word_category_btn))
         }
+        Spacer(modifier = Modifier.height(1.dp).weight(1f))
         Button(onClick = onClearClick, modifier = Modifier.padding(horizontal = 8.dp)) {
             Text(text = stringResource(R.string.new_word_clear_btn))
         }
         Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.new_word_category_btn))
+            Text(text = stringResource(R.string.new_word_save_btn))
         }
     }
     //}

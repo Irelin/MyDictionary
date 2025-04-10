@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,20 +27,28 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.study.di.StudyComponent
 import com.example.study.presentation.ui.StudyWordUI
 import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun StudyScreen(viewModel: StudyViewModel) {
+fun StudyScreen() {
+    val viewmodelFactory = remember {
+        val component = StudyComponent.create()
+        component.provideViewModelFactory()
+    }
+    val viewModel = viewModel(StudyViewModel::class, factory = viewmodelFactory)
 
     val wordsListState by viewModel.wordsListUiState.collectAsState()
 
     val pagerState = rememberPagerState(pageCount = {
         wordsListState.words.size
     })
+    FlipAnimation()
 
-    Column(
+    /*Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -89,7 +98,7 @@ fun StudyScreen(viewModel: StudyViewModel) {
         ) {
             Text(text = "${pagerState.currentPage + 1}/${pagerState.pageCount}", fontSize = 20.sp)
         }
-        /*HorizontalPager(state = pagerState, pageSpacing = 20.dp) { page ->
+        *//*HorizontalPager(state = pagerState, pageSpacing = 20.dp) { page ->
             val studyWord = wordsListState.words[page]
             Card(
                 Modifier
@@ -113,8 +122,8 @@ fun StudyScreen(viewModel: StudyViewModel) {
             ) {
                 WordCardContent(studyWord, viewModel::setAnswerCorrect)
             }
-        }*/
-    }
+        }*//*
+    }*/
 }
 
 @Composable

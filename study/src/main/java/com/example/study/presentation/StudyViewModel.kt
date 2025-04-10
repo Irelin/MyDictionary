@@ -5,13 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.study.StudyWordUiState
 import com.example.study.domain.GetStudyExerciseUseCase
 import com.example.study.presentation.ui.StudyWordUiMapper
+import com.example.words_api.domain.usecase.GetLastWords
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class StudyViewModel @Inject constructor(private val getStudyExercise: GetStudyExerciseUseCase,
+class StudyViewModel @Inject constructor(private val getStudyExercise: GetLastWords, // todo: GetStudyExerciseUseCase
                                          private val studyWordUiMapper: StudyWordUiMapper) :
     ViewModel() {
     private val _wordsListUiState: MutableStateFlow<StudyWordUiState> =
@@ -24,7 +25,7 @@ class StudyViewModel @Inject constructor(private val getStudyExercise: GetStudyE
 
     private fun getWords() {
         viewModelScope.launch {
-            getStudyExercise().collect { items ->
+            getStudyExercise(4).collect { items ->
                 _wordsListUiState.value = StudyWordUiState(items.map { studyWordUiMapper.map(it) })
             }
         }
