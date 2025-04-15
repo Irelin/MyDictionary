@@ -1,4 +1,4 @@
-package com.example.study.presentation
+package com.example.study.presentation.ui
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.EaseInOut
@@ -9,8 +9,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,15 +25,16 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.study.presentation.models.StudyWordUI
 
 @Composable
-fun FlipAnimation() {
-    var isCardFlipped = remember { mutableStateOf(false) }
+fun WordFlipCard(studyWord: StudyWordUI, onClick: () -> Unit) {
+    var isCardFlipped = remember { mutableStateOf(studyWord.isTranslationVisible) }
     val animDuration = 500
     val zAxisDistance = 15f //distance between camera and Card
 
     val frontColor = animateColorAsState(
-        targetValue = if (isCardFlipped.value) Color(0xFFCCE3CD) else Color(0xFF78CB94),
+        targetValue = if (isCardFlipped.value) Color(0xFFB0E0B1) else Color(0xFF78CB94),
         animationSpec = tween(durationMillis = animDuration, easing = EaseInOut),
         label = ""
     )
@@ -45,21 +47,23 @@ fun FlipAnimation() {
     )
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
             modifier = Modifier
-                .size(280.dp, 360.dp)
+                .fillMaxHeight()
+                .width(300.dp)
                 .graphicsLayer {
                     rotationY = rotateCardY.value
                     cameraDistance = zAxisDistance
                 }
                 .clip(RoundedCornerShape(24.dp))
-                .clickable { isCardFlipped.value = !isCardFlipped.value }
+                .clickable {
+                    isCardFlipped.value = !isCardFlipped.value
+                    onClick()
+                }
                 .background(frontColor.value),
             contentAlignment = Alignment.Center
         ) {
@@ -67,7 +71,7 @@ fun FlipAnimation() {
                 modifier = Modifier.graphicsLayer {
                     rotationY = if (rotateCardY.value < 90f) 0f else 180f
                 },
-                text = if (rotateCardY.value < 90f) "Word" else "Translation",
+                text = if (rotateCardY.value < 90f) studyWord.word.originValue else studyWord.word.translatedValue,
                 color = Color.Black,
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
