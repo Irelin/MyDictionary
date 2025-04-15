@@ -1,4 +1,4 @@
-package com.example.study.presentation.ui
+package com.example.study.presentation.models
 
 data class StudyWordUI(
     val word: WordUI,

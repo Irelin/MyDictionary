@@ -3,8 +3,7 @@ package com.example.study.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.study.StudyWordUiState
-import com.example.study.domain.GetStudyExerciseUseCase
-import com.example.study.presentation.ui.StudyWordUiMapper
+import com.example.study.presentation.mapper.StudyWordUiMapper
 import com.example.words_api.domain.usecase.GetLastWords
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -35,7 +34,7 @@ class StudyViewModel @Inject constructor(private val getStudyExercise: GetLastWo
         val words = _wordsListUiState.value.words
         _wordsListUiState.value = _wordsListUiState.value.copy(words = words.map {
             if (it.word.id == id) {
-                it.copy(isTranslationVisible = true)
+                it.copy(isTranslationVisible = !it.isTranslationVisible)
             } else {
                 it
             }

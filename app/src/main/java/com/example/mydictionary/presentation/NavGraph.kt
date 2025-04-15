@@ -1,6 +1,5 @@
 package com.example.mydictionary.presentation
 
-import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.WindowInsets
@@ -21,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -29,11 +27,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.dictionary.presentation.DictionaryScreen
-import com.example.home.di.DaggerHomeComponent
-import com.example.home.presentation.HomeScreen
-import com.example.home.presentation.HomeViewModel
+import com.example.home.presentation.ui.HomeScreen
 import com.example.mydictionary.R
-import com.example.study.presentation.StudyScreen
+import com.example.study.presentation.ui.StudyScreen
 import java.util.Locale
 
 @Composable

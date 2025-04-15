@@ -1,10 +1,9 @@
-package com.example.home.presentation
+package com.example.home.presentation.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -48,6 +47,7 @@ import com.example.home.NewWordUiState
 import com.example.home.R
 import com.example.home.WordsListUiState
 import com.example.home.di.HomeComponent
+import com.example.home.presentation.HomeViewModel
 import com.example.home.presentation.models.CategoryUI
 import com.example.home.presentation.models.WordUI
 
@@ -80,7 +80,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             onSaveClick = { viewModel.saveNewWord() },
             onClearClick = { viewModel.clearNewWord() })
         WordsList(wordsListUiState)
-        CategoriesList(categoriesListUiState)
+        CategoriesList(categoriesListUiState, wordsListUiState)
     }
 }
 
@@ -188,7 +188,9 @@ fun AddNewWord(
         Button(onClick = onSaveClick) {
             Text(text = stringResource(R.string.new_word_category_btn))
         }
-        Spacer(modifier = Modifier.height(1.dp).weight(1f))
+        Spacer(modifier = Modifier
+            .height(1.dp)
+            .weight(1f))
         Button(onClick = onClearClick, modifier = Modifier.padding(horizontal = 8.dp)) {
             Text(text = stringResource(R.string.new_word_clear_btn))
         }
@@ -276,9 +278,9 @@ fun DataLoading() {
 }
 
 @Composable
-fun CategoriesList(categoriesListState: CategoriesListUiState) {
+fun CategoriesList(categoriesListState: CategoriesListUiState, wordsListUiState: WordsListUiState) {
     when (categoriesListState) {
-        is CategoriesListUiState.Loading -> DataLoading()
+        is CategoriesListUiState.Loading -> if (wordsListUiState != WordsListUiState.Loading) DataLoading()
         is CategoriesListUiState.Success -> CategoriesList(
             categories = categoriesListState.categories
         )
@@ -330,7 +332,13 @@ fun Category(category: CategoryUI) {
                 .weight(1f)
         ) {
             Text(text = category.name, fontSize = 20.sp)
-            Text(text = pluralStringResource(R.plurals.category_words_count, category.wordsCount, category.wordsCount), fontSize = 16.sp)
+            Text(
+                text = pluralStringResource(
+                    R.plurals.category_words_count,
+                    category.wordsCount,
+                    category.wordsCount
+                ), fontSize = 16.sp
+            )
         }
         Image(
             painter = painterResource(id = R.drawable.icon_category_view_arrow),
