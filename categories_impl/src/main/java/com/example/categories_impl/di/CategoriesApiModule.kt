@@ -1,7 +1,9 @@
 package com.example.categories_impl.di
 
+import com.example.categories_api.domain.usecase.AddCategory
 import com.example.categories_api.domain.usecase.GetAllCategories
 import com.example.categories_api.domain.usecase.GetLastCategories
+import com.example.categories_impl.domain.usecase.AddCategoryUseCase
 import com.example.categories_impl.domain.usecase.GetAllCategoriesUseCase
 import com.example.categories_impl.domain.usecase.GetLastCategoriesUseCase
 import com.example.categories_impl.mapper.CategoryInfoDBOToDomainMapper
@@ -27,4 +29,9 @@ class CategoriesApiModule {
     @Singleton
     fun provideGetCategories(categoriesRepository: CategoriesRepository): GetAllCategories =
         GetAllCategoriesUseCase(categoriesRepository)
+
+    @Provides
+    @Singleton
+    fun provideAddNewCategory(categoriesRepository: CategoriesRepository): AddCategory =
+        AddCategoryUseCase(categoriesRepository)
 }

@@ -23,7 +23,7 @@ interface CategoriesDao {
     fun observeLastCategoriesInfo(count: Int = 1): Flow<List<CategoryInfoDBO>>
 
     @Insert
-    suspend fun insert(category: CategoryDBO)
+    suspend fun insert(category: CategoryDBO): Long
 
     @Delete
     suspend fun remove(category: CategoryDBO)
