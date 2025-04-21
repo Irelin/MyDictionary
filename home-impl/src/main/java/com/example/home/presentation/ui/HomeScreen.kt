@@ -6,9 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,10 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.LinearProgressIndicator
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -37,7 +32,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -85,52 +79,6 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun Profile() {
-    Row(
-        modifier = Modifier
-            .clip(shape = RoundedCornerShape(12.dp))
-            .background(Color.LightGray)
-            .fillMaxWidth()
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.account_image_default),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(100.dp)
-                .clip(RoundedCornerShape(16.dp))
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.profile_hi_user, "User"),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = stringResource(R.string.profile_learned_words, 50, 100),
-                fontSize = 14.sp,
-                color = Color.Gray
-            )
-            LinearProgressIndicator(
-                progress = { 0.5f },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                color = Color.Red,
-                trackColor = Color.Gray
-            )
-        }
-    }
-}
-
-@Composable
 fun LogoDictionary() {
     Image(
         painter = painterResource(id = R.drawable.home_dictionary_logo),
@@ -140,65 +88,6 @@ fun LogoDictionary() {
             .padding(8.dp)
             .size(150.dp)
     )
-}
-
-@Composable
-fun AddNewWord(
-    newWordUiState: NewWordUiState,
-    onWordChange: (String) -> Unit,
-    onTranslationChange: (String) -> Unit,
-    onSaveClick: () -> Unit,
-    onClearClick: () -> Unit
-) {
-    /*Column(
-        modifier = Modifier
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {*/
-    Text(
-        modifier = Modifier
-            .fillMaxWidth(),
-        textAlign = TextAlign.Start,
-        text = stringResource(R.string.new_word_title),
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold
-    )
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth(),
-        value = newWordUiState.word,
-        onValueChange = onWordChange,
-        label = { Text(stringResource(R.string.new_word_text)) },
-        isError = newWordUiState.word.isEmpty() && newWordUiState.isInvalidWord
-    )
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth(),
-        value = newWordUiState.translation,
-        onValueChange = onTranslationChange,
-        label = { Text(stringResource(R.string.new_word_translation)) },
-        isError = newWordUiState.translation.isEmpty() && newWordUiState.isInvalidWord
-    )
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        horizontalArrangement = Arrangement.End
-    ) {
-        Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.new_word_category_btn))
-        }
-        Spacer(modifier = Modifier
-            .height(1.dp)
-            .weight(1f))
-        Button(onClick = onClearClick, modifier = Modifier.padding(horizontal = 8.dp)) {
-            Text(text = stringResource(R.string.new_word_clear_btn))
-        }
-        Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.new_word_save_btn))
-        }
-    }
-    //}
 }
 
 @Composable
