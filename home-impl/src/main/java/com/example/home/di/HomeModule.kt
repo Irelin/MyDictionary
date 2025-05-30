@@ -3,6 +3,7 @@ package com.example.home.di
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.categories_api.domain.usecase.AddCategory
 import com.example.categories_api.domain.usecase.GetLastCategories
 import com.example.home.presentation.HomeViewModel
 import com.example.home.presentation.mapper.CategoryUiMapper
@@ -21,6 +22,7 @@ class HomeModule {
         getLastWords: GetLastWords,
         addWord: AddWord,
         getLastCategories: GetLastCategories,
+        addCategory: AddCategory,
         wordUiMapper: WordUiMapper,
         categoryUiMapper: CategoryUiMapper
     ): HomeViewModel {
@@ -28,6 +30,7 @@ class HomeModule {
             getLastWords,
             addWord,
             getLastCategories,
+            addCategory,
             wordUiMapper,
             categoryUiMapper
         )

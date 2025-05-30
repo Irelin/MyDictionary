@@ -1,5 +1,6 @@
 package com.example.study.presentation.ui
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -51,6 +52,7 @@ fun StudyScreen() {
             state = pagerState,
         ) { page ->
             val word = wordsListState.words[page]
+            Log.d("Dictionary", "Pager page = $page, word = ${word.word.originValue}")
             WordFlipCard(word) { viewModel.showTranslation(word.word.id) }
         }
         Text(

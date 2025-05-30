@@ -5,7 +5,7 @@ import com.example.words_impl.repository.WordsRepository
 import javax.inject.Inject
 
 class AddWordUseCase @Inject constructor(private val wordsRepository: WordsRepository): AddWord {
-    override suspend operator fun invoke(word: String, translation: String) {
-        wordsRepository.addNewWord(word, translation)
+    override suspend operator fun invoke(word: String, translation: String, categories: List<Long>) {
+        wordsRepository.addNewWordWithCategories(word, translation, categories)
     }
 }

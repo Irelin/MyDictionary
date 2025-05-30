@@ -2,8 +2,10 @@ package com.example.home.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.categories_api.domain.usecase.AddCategory
 import com.example.categories_api.domain.usecase.GetLastCategories
 import com.example.home.CategoriesListUiState
+import com.example.home.NewCategoryUiState
 import com.example.home.NewWordUiState
 import com.example.home.WordsListUiState
 import com.example.home.presentation.mapper.CategoryUiMapper
@@ -21,6 +23,7 @@ class HomeViewModel @Inject constructor(
     private val getLastWords: GetLastWords,
     private val addNewWord: AddWord,
     private val getLastCategories: GetLastCategories,
+    private val addNewCategory: AddCategory,
     private val wordUiMapper: WordUiMapper,
     private val categoryUiMapper: CategoryUiMapper,
 ) : ViewModel() {
@@ -36,6 +39,9 @@ class HomeViewModel @Inject constructor(
     private val _wordsListUiState: MutableStateFlow<WordsListUiState> =
         MutableStateFlow(WordsListUiState.Loading)
     val wordsListUiState: StateFlow<WordsListUiState> = _wordsListUiState.asStateFlow()
+
+    private val _newCategoryUiState = MutableStateFlow(NewCategoryUiState())
+    val newCategoryUiState: StateFlow<NewCategoryUiState> = _newCategoryUiState.asStateFlow()
 
     private val _categoriesListUiState: MutableStateFlow<CategoriesListUiState> =
         MutableStateFlow(CategoriesListUiState.Loading)
@@ -65,7 +71,7 @@ class HomeViewModel @Inject constructor(
         newWordUiState.value.apply {
             if (isWordValid(word, translation)) {
                 viewModelScope.launch {
-                    addNewWord(word, translation)
+                    addNewWord(word, translation, categories)
                     resetNewWordState()
                 }
             } else {
@@ -76,8 +82,39 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun saveNewCategory() {
+        newCategoryUiState.value.apply {
+            viewModelScope.launch {
+                addNewCategory(name)
+                updateNewCategory("")
+            }
+        }
+    }
+
     fun clearNewWord() {
         resetNewWordState()
+    }
+
+    fun updateNewCategory(category: String) {
+        _newCategoryUiState.update { currentState ->
+            currentState.copy(name = category)
+        }
+    }
+
+    fun addWordCategory(id: Long) {
+        val newCategories = _newWordUiState.value.categories
+        newCategories.add(id)
+        updateWordCategories(newCategories)
+    }
+
+    fun removeWordCategory(id: Long) {
+        val newCategories = _newWordUiState.value.categories
+        newCategories.remove(id)
+        updateWordCategories(newCategories)
+    }
+
+    fun resetWordCategories() {
+        updateWordCategories(mutableListOf<Long>())
     }
 
     private fun getWords() {
@@ -101,6 +138,12 @@ class HomeViewModel @Inject constructor(
     private fun resetNewWordState() {
         _newWordUiState.update { currentState ->
             currentState.copy(word = "", translation = "", isInvalidWord = false)
+        }
+    }
+
+    private fun updateWordCategories(newCategories: MutableList<Long>) {
+        _newWordUiState.update { currentState ->
+            currentState.copy(categories = newCategories)
         }
     }
 
