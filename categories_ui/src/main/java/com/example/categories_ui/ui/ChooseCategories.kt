@@ -1,9 +1,6 @@
-package com.example.home.presentation.ui
+package com.example.categories_ui.ui
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -11,10 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
@@ -24,7 +19,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
@@ -32,118 +26,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.home.CategoriesListUiState
-import com.example.home.NewCategoryUiState
-import com.example.home.R
-import com.example.home.presentation.models.CategoryUI
-
-@Composable
-fun CategoriesList(categoriesListState: CategoriesListUiState) {
-    when (categoriesListState) {
-        is CategoriesListUiState.Loading -> DataLoading()
-        is CategoriesListUiState.Success -> CategoriesList(
-            categories = categoriesListState.categories
-        )
-
-        is CategoriesListUiState.Error -> DataLoadingError()
-    }
-}
-
-@Composable
-fun CategoriesList(categories: List<CategoryUI>) {
-    if (categories.isEmpty())
-        return
-    ListTitle(R.string.my_categories_title)
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(0.dp, 400.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        items(categories.sortedByDescending { it.id }) {
-            key(it.id) {
-                Category(it)
-            }
-        }
-    }
-}
-
-@Composable
-fun Category(category: CategoryUI) {
-    CategoryItem(category) {
-        Image(
-            painter = painterResource(id = R.drawable.icon_category_view_arrow),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .size(24.dp)
-        )
-    }
-}
-
-@Composable
-fun SelectableCategory(
-    category: CategoryUI,
-    checked: Boolean,
-    onCategoryChecked: (Long, Boolean) -> Unit
-) {
-    CategoryItem(category) {
-        val checkedState = remember { mutableStateOf(checked) }
-        Checkbox(
-            checked = checkedState.value,
-            onCheckedChange = {
-                onCategoryChecked(category.id, it)
-                checkedState.value = it
-            }
-        )
-    }
-}
-
-@Composable
-private fun CategoryItem(category: CategoryUI, rightButton: @Composable () -> Unit) {
-    Row(
-        modifier = Modifier
-            .padding(vertical = 4.dp)
-            .clip(shape = RoundedCornerShape(12.dp))
-            .background(Color.LightGray)
-            .fillMaxWidth()
-            .padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.icon_category_default),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .size(50.dp)
-        )
-        Column(
-            modifier = Modifier
-                .padding(horizontal = 12.dp)
-                .weight(1f)
-        ) {
-            Text(text = category.name, fontSize = 20.sp)
-            Text(
-                text = pluralStringResource(
-                    R.plurals.category_words_count,
-                    category.wordsCount,
-                    category.wordsCount
-                ), fontSize = 16.sp
-            )
-        }
-        rightButton()
-    }
-}
+import com.example.categories_ui.CategoriesListUiState
+import com.example.categories_ui.NewCategoryUiState
+import com.example.categories_ui.R
+import com.example.categories_ui.models.CategoryUI
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -202,7 +92,7 @@ fun ChooseCategories(
                     { chooseCategoriesOpen.value = false })
             }
         } else {
-            NewCategory(
+            AddNewCategory(
                 newCategoryUiState,
                 onBackClick,
                 onNewCategoryNameChange,
@@ -236,7 +126,7 @@ fun ChooseCategoriesList(
             Text(text = stringResource(R.string.new_category_btn))
         }
         Button(onClick = onSave) {
-            Text(text = stringResource(R.string.save_btn))
+            Text(text = stringResource(R.string.category_save_btn))
         }
     }
     LazyColumn(
@@ -254,35 +144,19 @@ fun ChooseCategoriesList(
 }
 
 @Composable
-fun NewCategory(
-    newCategoryUiState: NewCategoryUiState,
-    onNewCategoryCancel: () -> Unit,
-    onWordChange: (String) -> Unit,
-    onSaveClick: () -> Unit
+fun SelectableCategory(
+    category: CategoryUI,
+    checked: Boolean,
+    onCategoryChecked: (Long, Boolean) -> Unit
 ) {
-    OutlinedTextField(
-        modifier = Modifier.Companion
-            .fillMaxWidth()
-            .padding(16.dp),
-        value = newCategoryUiState.name,
-        onValueChange = onWordChange,
-        label = { Text(stringResource(R.string.new_category_text)) }
-        //isError = chooseCategoriesUiState.newCategory.isEmpty() && chooseCategoriesUiState.isInvalidWord
-    )
-    Row(
-        modifier = Modifier.Companion
-            .fillMaxWidth()
-            .padding(16.dp),
-        horizontalArrangement = Arrangement.End
-    ) {
-        Button(
-            onClick = onNewCategoryCancel,
-            modifier = Modifier.Companion.padding(horizontal = 8.dp)
-        ) {
-            Text(text = stringResource(R.string.cancel_btn))
-        }
-        Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.save_btn))
-        }
+    CategoryItem(category) {
+        val checkedState = remember { mutableStateOf(checked) }
+        Checkbox(
+            checked = checkedState.value,
+            onCheckedChange = {
+                onCategoryChecked(category.id, it)
+                checkedState.value = it
+            }
+        )
     }
 }

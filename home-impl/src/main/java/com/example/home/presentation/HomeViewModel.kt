@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.categories_api.domain.usecase.AddCategory
 import com.example.categories_api.domain.usecase.GetLastCategories
-import com.example.home.CategoriesListUiState
-import com.example.home.NewCategoryUiState
+import com.example.categories_ui.CategoriesListUiState
+import com.example.categories_ui.NewCategoryUiState
 import com.example.home.NewWordUiState
 import com.example.home.WordsListUiState
 import com.example.home.presentation.mapper.CategoryUiMapper

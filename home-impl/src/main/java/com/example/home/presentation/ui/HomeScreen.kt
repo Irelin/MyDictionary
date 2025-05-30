@@ -30,9 +30,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.categories_ui.ui.CategoriesList
+import com.example.categories_ui.ui.ChooseCategories
 import com.example.home.NewWordUiState
 import com.example.home.R
-import com.example.home.WordsListUiState
 import com.example.home.di.HomeComponent
 import com.example.home.presentation.HomeViewModel
 import com.example.home.presentation.models.WordUI
@@ -71,7 +72,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             onClearClick = { viewModel.clearNewWord() })
         WordsList(wordsListUiState)
 
-        CategoriesList(categoriesListUiState)
+        CategoriesList(categoriesListUiState) {
+            ListTitle(R.string.my_categories_title)
+        }
         if (chooseCategoriesOpen.value) {
             ChooseCategories(
                 newCategoryUiState,

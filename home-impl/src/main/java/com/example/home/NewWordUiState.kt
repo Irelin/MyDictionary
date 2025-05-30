@@ -6,7 +6,3 @@ data class NewWordUiState(
     var isInvalidWord: Boolean = false,
     var categories: MutableList<Long> = mutableListOf<Long>()
 )
-
-data class NewCategoryUiState(
-    var name: String = ""
-)
