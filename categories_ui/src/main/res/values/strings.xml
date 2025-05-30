@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="category_words_count">
+        <item quantity="one">%d word</item>
+        <item quantity="other">%d words</item>
+    </plurals>
+
+    <string name="choose_category_title">Choose category</string>
+    <string name="new_category_title">New category</string>
+    <string name="new_category_btn">New category</string>
+    <string name="new_category_text">Category name</string>
+
+    <string name="category_save_btn">Save</string>
+    <string name="category_cancel_btn">Cancel</string>
+
+    <string name="categories_loading_error">Can\'t load categories</string>
+</resources>

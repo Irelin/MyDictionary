@@ -11,20 +11,9 @@
     <string name="my_words_title">My words</string>
 
     <string name="my_categories_title">My categories</string>
-    <string name="my_category_words_count">%1$d words</string>
 
     <string name="view_all">View all</string>
     <string name="data_loading_error">Can\'t load data</string>
-
-    <plurals name="category_words_count">
-        <item quantity="one">%d word</item>
-        <item quantity="other">%d words</item>
-    </plurals>
-
-    <string name="choose_category_title">Choose category</string>
-    <string name="new_category_title">New category</string>
-    <string name="new_category_btn">New category</string>
-    <string name="new_category_text">Category name</string>
 
     <string name="save_btn">Save</string>
     <string name="clear_btn">Clear</string>

@@ -1,7 +1,7 @@
 package com.example.home.presentation.mapper
 
 import com.example.categories_api.domain.models.Category
-import com.example.home.presentation.models.CategoryUI
+import com.example.categories_ui.models.CategoryUI
 import javax.inject.Inject
 
 class CategoryUiMapper @Inject constructor() {
