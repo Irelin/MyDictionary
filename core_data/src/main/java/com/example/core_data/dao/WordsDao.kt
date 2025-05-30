@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
+import com.example.core_data.dbo.CategoryWordCrossRef
 import com.example.core_data.dbo.WordDBO
 import kotlinx.coroutines.flow.Flow
 
@@ -29,6 +31,18 @@ interface WordsDao {
 
     @Insert
     suspend fun insert(word: WordDBO): Long
+
+    @Transaction
+    suspend fun insertWordWithCategories(word: WordDBO, categories: List<Long>): Long {
+        val wordId = insert(word)
+        categories.forEach { categoryId ->
+            insertCategoryWordCrossRef(CategoryWordCrossRef(categoryId = categoryId, wordId = wordId))
+        }
+        return wordId
+    }
+
+    @Insert
+    suspend fun insertCategoryWordCrossRef(crossRef: CategoryWordCrossRef)
 
     @Delete
     suspend fun remove(word: WordDBO)

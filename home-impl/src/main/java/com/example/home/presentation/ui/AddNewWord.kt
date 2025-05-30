@@ -24,6 +24,7 @@ fun AddNewWord(
     newWordUiState: NewWordUiState,
     onWordChange: (String) -> Unit,
     onTranslationChange: (String) -> Unit,
+    onCategoryClick: () -> Unit,
     onSaveClick: () -> Unit,
     onClearClick: () -> Unit
 ) {
@@ -57,7 +58,7 @@ fun AddNewWord(
             .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        Button(onClick = onSaveClick) {
+        Button(onClick = onCategoryClick) {
             Text(text = stringResource(R.string.new_word_category_btn))
         }
         Spacer(
@@ -66,10 +67,10 @@ fun AddNewWord(
                 .weight(1f)
         )
         Button(onClick = onClearClick, modifier = Modifier.Companion.padding(horizontal = 8.dp)) {
-            Text(text = stringResource(R.string.new_word_clear_btn))
+            Text(text = stringResource(R.string.clear_btn))
         }
         Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.new_word_save_btn))
+            Text(text = stringResource(R.string.save_btn))
         }
     }
 }

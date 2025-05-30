@@ -31,7 +31,7 @@ import com.example.study.presentation.models.StudyWordUI
 fun WordFlipCard(studyWord: StudyWordUI, onClick: () -> Unit) {
     var isCardFlipped = remember { mutableStateOf(studyWord.isTranslationVisible) }
     val animDuration = 500
-    val zAxisDistance = 15f //distance between camera and Card
+    val zAxisDistance = 50f //distance between camera and Card
 
     val frontColor = animateColorAsState(
         targetValue = if (isCardFlipped.value) Color(0xFFB0E0B1) else Color(0xFF78CB94),
