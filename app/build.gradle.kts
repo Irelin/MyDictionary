@@ -4,11 +4,12 @@ plugins {
     //alias(libs.plugins.ksp)
     alias(libs.plugins.kapt)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
     namespace = "com.example.mydictionary"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.mydictionary"
