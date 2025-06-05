@@ -32,11 +32,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.categories_ui.ui.CategoriesList
 import com.example.categories_ui.ui.ChooseCategories
-import com.example.home.NewWordUiState
 import com.example.home.R
 import com.example.home.di.HomeComponent
 import com.example.home.presentation.HomeViewModel
-import com.example.home.presentation.models.WordUI
+import com.example.words_ui.NewWordUiState
+import com.example.words_ui.models.WordUI
+import com.example.words_ui.ui.AddNewWord
+import com.example.words_ui.ui.WordsList
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier) {
@@ -70,7 +72,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             onCategoryClick = { chooseCategoriesOpen.value = true },
             onSaveClick = { viewModel.saveNewWord() },
             onClearClick = { viewModel.clearNewWord() })
-        WordsList(wordsListUiState)
+        WordsList(wordsListUiState) {
+            ListTitle(R.string.my_words_title)
+        }
 
         CategoriesList(categoriesListUiState) {
             ListTitle(R.string.my_categories_title)
@@ -160,5 +164,7 @@ fun WordsListPreview() {
             WordUI(1, "sehen", "see"),
             WordUI(1, "malen", "draw")
         )
-    )
+    ) {
+        ListTitle(R.string.my_words_title)
+    }
 }

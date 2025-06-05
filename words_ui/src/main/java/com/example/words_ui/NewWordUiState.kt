@@ -1,4 +1,4 @@
-package com.example.home
+package com.example.words_ui
 
 data class NewWordUiState(
     var word: String = "",

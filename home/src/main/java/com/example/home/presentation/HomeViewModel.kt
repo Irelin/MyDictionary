@@ -6,8 +6,8 @@ import com.example.categories_api.domain.usecase.AddCategory
 import com.example.categories_api.domain.usecase.GetLastCategories
 import com.example.categories_ui.CategoriesListUiState
 import com.example.categories_ui.NewCategoryUiState
-import com.example.home.NewWordUiState
-import com.example.home.WordsListUiState
+import com.example.words_ui.NewWordUiState
+import com.example.words_ui.WordsListUiState
 import com.example.home.presentation.mapper.CategoryUiMapper
 import com.example.home.presentation.mapper.WordUiMapper
 import com.example.words_api.domain.usecase.AddWord

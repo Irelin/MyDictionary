@@ -1,4 +1,4 @@
-package com.example.home.presentation.ui
+package com.example.words_ui.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -16,8 +16,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.home.NewWordUiState
-import com.example.home.R
+import com.example.words_ui.NewWordUiState
+import com.example.words_ui.R
 
 @Composable
 fun AddNewWord(
@@ -67,10 +67,10 @@ fun AddNewWord(
                 .weight(1f)
         )
         Button(onClick = onClearClick, modifier = Modifier.Companion.padding(horizontal = 8.dp)) {
-            Text(text = stringResource(R.string.clear_btn))
+            Text(text = stringResource(R.string.word_clear_btn))
         }
         Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.save_btn))
+            Text(text = stringResource(R.string.word_save_btn))
         }
     }
 }

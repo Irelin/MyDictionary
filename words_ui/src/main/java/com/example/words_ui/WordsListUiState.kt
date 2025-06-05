@@ -1,6 +1,6 @@
-package com.example.home
+package com.example.words_ui
 
-import com.example.home.presentation.models.WordUI
+import com.example.words_ui.models.WordUI
 
 sealed interface WordsListUiState {
     data class Success(val words: List<WordUI>) : WordsListUiState
