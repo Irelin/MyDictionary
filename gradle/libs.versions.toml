@@ -1,8 +1,7 @@
 [versions]
-agp = "8.3.2"
+agp = "8.6.0"
 datastorePreferences = "1.1.1"
-hiltNavigationCompose = "1.2.0"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -10,9 +9,9 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.8.0"
 activityCompose = "1.9.0"
 composeBom = "2024.05.00"
-navigationCompose = "2.7.7"
+navigationCompose = "2.9.0"
 room = "2.6.1"
-ksp = "1.9.23-1.0.20"
+ksp = "2.0.0-1.0.24"
 retrofit = "2.11.0"
 kotlin-serialization-json = "1.6.3"
 retrofit2KotlinxSerializationConverter = "1.0.0"
@@ -25,7 +24,6 @@ dagger = "2.56.1"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
-androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -49,8 +47,6 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 kotlinx-serialization-json = {module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization-json"}
 retrofit-adapters-result = { module = "com.github.skydoves:retrofit-adapters-result", version.ref = "retrofitAdaptersResult" }
 retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
@@ -65,3 +61,4 @@ hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroi
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
