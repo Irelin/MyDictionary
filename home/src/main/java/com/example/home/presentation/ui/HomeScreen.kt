@@ -41,7 +41,10 @@ import com.example.words_ui.ui.AddNewWord
 import com.example.words_ui.ui.WordsList
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    onNavigateToDictionary: () -> Unit
+) {
     val viewModelFactory = remember {
         val component = HomeComponent.create()
         component.provideViewModelFactory()
@@ -73,11 +76,11 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             onSaveClick = { viewModel.saveNewWord() },
             onClearClick = { viewModel.clearNewWord() })
         WordsList(wordsListUiState) {
-            ListTitle(R.string.my_words_title)
+            ListTitle(R.string.my_words_title, onNavigateToDictionary)
         }
 
         CategoriesList(categoriesListUiState) {
-            ListTitle(R.string.my_categories_title)
+            ListTitle(R.string.my_categories_title, onNavigateToDictionary)
         }
         if (chooseCategoriesOpen.value) {
             ChooseCategories(
@@ -115,7 +118,7 @@ fun LogoDictionary() {
 }
 
 @Composable
-fun ListTitle(@StringRes titleRes: Int) {
+fun ListTitle(@StringRes titleRes: Int, onViewAllClick: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
@@ -128,7 +131,8 @@ fun ListTitle(@StringRes titleRes: Int) {
             fontWeight = FontWeight.Bold
         )
         TextButton(
-            onClick = {}) {
+            onClick = onViewAllClick
+        ) {
             Text(stringResource(R.string.view_all))
         }
     }
@@ -165,6 +169,6 @@ fun WordsListPreview() {
             WordUI(1, "malen", "draw")
         )
     ) {
-        ListTitle(R.string.my_words_title)
+        ListTitle(R.string.my_words_title, {})
     }
 }
