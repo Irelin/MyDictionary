@@ -17,8 +17,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core_data" />
             <option value="$PROJECT_DIR$/dictionary" />
-            <option value="$PROJECT_DIR$/home-api" />
-            <option value="$PROJECT_DIR$/home-impl" />
+            <option value="$PROJECT_DIR$/home" />
             <option value="$PROJECT_DIR$/profile" />
             <option value="$PROJECT_DIR$/study" />
             <option value="$PROJECT_DIR$/words_api" />

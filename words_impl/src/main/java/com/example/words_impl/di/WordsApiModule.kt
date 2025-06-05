@@ -3,8 +3,10 @@ package com.example.words_impl.di
 import com.example.core_data.dao.WordsDao
 import com.example.words_api.domain.usecase.AddWord
 import com.example.words_api.domain.usecase.GetLastWords
+import com.example.words_api.domain.usecase.GetAllWords
 import com.example.words_impl.domain.usecase.AddWordUseCase
 import com.example.words_impl.domain.usecase.GetLastWordsUseCase
+import com.example.words_impl.domain.usecase.GetAllWordsUseCase
 import com.example.words_impl.mapper.WordDBOToDomainMapper
 import com.example.words_impl.repository.WordsRepository
 import dagger.Module
@@ -27,4 +29,9 @@ class WordsApiModule {
     @Singleton
     fun provideGetLastWords(wordsRepository: WordsRepository): GetLastWords =
         GetLastWordsUseCase(wordsRepository)
+
+    @Provides
+    @Singleton
+    fun provideGetWords(wordsRepository: WordsRepository): GetAllWords =
+        GetAllWordsUseCase(wordsRepository)
 }

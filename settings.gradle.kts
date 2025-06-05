@@ -21,10 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyDictionary"
 include(":app")
-include(":home-impl")
+include(":home")
 include(":study")
 include(":profile")
-include(":home-api")
 include(":core")
 include(":core_data")
 include(":words_impl")
