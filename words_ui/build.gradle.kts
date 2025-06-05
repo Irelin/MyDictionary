@@ -1,13 +1,12 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.kapt)
 }
 
 apply("../commonUiModule.gradle")
 
 android {
-    namespace = "com.example.home"
+    namespace = "com.example.words_ui"
     compileSdk = 34
 
     defaultConfig {
@@ -27,11 +26,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         buildConfig = true
@@ -44,13 +43,10 @@ android {
 
 dependencies {
 
-    implementation(project(":words_api"))
-    implementation(project(":words_ui"))
-    implementation(project(":categories_api"))
-    implementation(project(":categories_ui"))
-    implementation(project(":core"))
-
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
-
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

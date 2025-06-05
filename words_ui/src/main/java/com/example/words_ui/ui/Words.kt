@@ -1,4 +1,4 @@
-package com.example.home.presentation.ui
+package com.example.words_ui.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
@@ -15,29 +16,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.home.R
-import com.example.home.WordsListUiState
-import com.example.home.presentation.models.WordUI
+import com.example.words_ui.R
+import com.example.words_ui.WordsListUiState
+import com.example.words_ui.models.WordUI
 
 @Composable
-fun WordsList(wordsListState: WordsListUiState) {
+fun WordsList(wordsListState: WordsListUiState, title: @Composable () -> Unit) {
     when (wordsListState) {
         is WordsListUiState.Loading -> DataLoading()
-        is WordsListUiState.Success -> WordsList(
-            words = wordsListState.words
-        )
-
+        is WordsListUiState.Success -> WordsList(wordsListState.words, title)
         is WordsListUiState.Error -> DataLoadingError()
     }
 }
 
 @Composable
-fun WordsList(words: List<WordUI>) {
+fun WordsList(words: List<WordUI>, title: @Composable () -> Unit) {
     if (words.isEmpty())
         return
-    ListTitle(R.string.my_words_title)
+    title()
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
@@ -65,4 +64,14 @@ fun Word(word: WordUI) {
         Text(text = word.originValue, fontSize = 20.sp)
         Text(text = word.translatedValue, fontSize = 16.sp)
     }
+}
+
+@Composable
+fun DataLoadingError() {
+    Text(text = stringResource(R.string.words_loading_error))
+}
+
+@Composable
+fun DataLoading() {
+    CircularProgressIndicator()
 }

@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/study" />
             <option value="$PROJECT_DIR$/words_api" />
             <option value="$PROJECT_DIR$/words_impl" />
+            <option value="$PROJECT_DIR$/words_ui" />
           </set>
         </option>
       </GradleProjectSettings>

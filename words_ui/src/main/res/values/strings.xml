@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="words_loading_error">Can\'t load words</string>
+
+    <string name="new_word_title">Add new word</string>
+    <string name="new_word_text">Word</string>
+    <string name="new_word_translation">Translation</string>
+    <string name="new_word_category_btn">Category</string>
+
+    <string name="word_save_btn">Save</string>
+    <string name="word_clear_btn">Clear</string>
+</resources>
