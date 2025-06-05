@@ -33,6 +33,13 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        buildConfig = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.12"
+    }
 }
 
 dependencies {
@@ -45,6 +52,9 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(project(":categories_api"))
+    implementation(project(":categories_ui"))
+    implementation(project(":core"))
+    implementation(project(":words_api"))
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)

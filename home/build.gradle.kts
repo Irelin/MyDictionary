@@ -45,11 +45,8 @@ android {
 dependencies {
 
     implementation(project(":words_api"))
-    implementation(project(":words_impl"))
     implementation(project(":categories_api"))
-    implementation(project(":categories_impl"))
     implementation(project(":categories_ui"))
-    implementation(project(":home-api"))
     implementation(project(":core"))
 
     implementation(libs.dagger)

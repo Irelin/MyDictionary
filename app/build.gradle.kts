@@ -82,7 +82,7 @@ dependencies {
     api(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
-    implementation(project(":home-impl"))
+    implementation(project(":home"))
     implementation(project(":study"))
     implementation(project(":dictionary"))
     implementation(project(":core"))
