@@ -1,4 +1,4 @@
-package com.example.home.presentation.mapper
+package com.example.words_ui.mapper
 
 import com.example.words_ui.models.WordUI
 import com.example.words_api.domain.models.Word

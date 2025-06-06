@@ -8,8 +8,8 @@ import com.example.categories_ui.CategoriesListUiState
 import com.example.categories_ui.NewCategoryUiState
 import com.example.words_ui.NewWordUiState
 import com.example.words_ui.WordsListUiState
-import com.example.home.presentation.mapper.CategoryUiMapper
-import com.example.home.presentation.mapper.WordUiMapper
+import com.example.categories_ui.mapper.CategoryUiMapper
+import com.example.words_ui.mapper.WordUiMapper
 import com.example.words_api.domain.usecase.AddWord
 import com.example.words_api.domain.usecase.GetLastWords
 import kotlinx.coroutines.flow.MutableStateFlow
