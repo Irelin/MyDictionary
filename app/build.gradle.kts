@@ -86,6 +86,7 @@ dependencies {
     implementation(project(":home"))
     implementation(project(":study"))
     implementation(project(":categories"))
+    implementation(project(":words"))
     implementation(project(":core"))
     implementation(project(":core_data"))
     implementation(project(":words_api"))

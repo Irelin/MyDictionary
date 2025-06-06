@@ -2,6 +2,7 @@ package com.example.words_impl.repository
 
 import com.example.core_data.dao.WordsDao
 import com.example.core_data.dbo.WordDBO
+import com.example.words_api.domain.models.CategoryWords
 import com.example.words_api.domain.models.Word
 import com.example.words_impl.mapper.WordDBOToDomainMapper
 import kotlinx.coroutines.flow.Flow
@@ -12,13 +13,16 @@ import javax.inject.Inject
 class WordsRepository @Inject constructor(
     private val wordsDao: WordsDao,
     private val wordMapper: WordDBOToDomainMapper
-    //private val ioDispatcher: CoroutineDispatcher
 ) {
     suspend fun addNewWord(word: String, translation: String): Long {
         return wordsDao.insert(WordDBO(0L, word, translation))
     }
 
-    suspend fun addNewWordWithCategories(word: String, translation: String, categories: List<Long>): Long {
+    suspend fun addNewWordWithCategories(
+        word: String,
+        translation: String,
+        categories: List<Long>
+    ): Long {
         return wordsDao.insertWordWithCategories(WordDBO(0L, word, translation), categories)
     }
 
@@ -36,5 +40,15 @@ class WordsRepository @Inject constructor(
         }*/
         return wordsDao.observeLast(count).map { it.map { word -> wordMapper.map(word) } }
             .catch { listOf<Word>() }
+    }
+
+    suspend fun getCategoryWords(categoryId: Long): Flow<CategoryWords> {
+        return wordsDao.getCategoryWords(categoryId).map { entity ->
+            CategoryWords(
+                entity.category.categoryId,
+                entity.category.name,
+                entity.words.map { wordDbo -> wordMapper.map(wordDbo) })
+        }
+
     }
 }

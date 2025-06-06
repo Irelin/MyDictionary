@@ -8,7 +8,7 @@ plugins {
 apply("../commonUiModule.gradle")
 
 android {
-    namespace = "com.example.words_ui"
+    namespace = "com.example.words"
     compileSdk = 35
 
     defaultConfig {
@@ -51,7 +51,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(project(":core"))
     implementation(project(":words_api"))
+    implementation(project(":words_ui"))
+    implementation(project(":categories_api"))
+
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 }
