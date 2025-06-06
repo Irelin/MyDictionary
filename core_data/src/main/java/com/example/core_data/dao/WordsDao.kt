@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import com.example.core_data.dbo.CategoryWithWordsDBO
 import com.example.core_data.dbo.CategoryWordCrossRef
 import com.example.core_data.dbo.WordDBO
 import kotlinx.coroutines.flow.Flow
@@ -25,6 +26,10 @@ interface WordsDao {
 
     @Query("select * from words order by wordId desc limit :count")
     fun observeLast(count: Int = 1): Flow<List<WordDBO>>
+
+    @Transaction
+    @Query("SELECT * FROM categories where categoryId = :id limit 1")
+    fun getCategoryWords(id: Long = 1): Flow<CategoryWithWordsDBO>
 
     /*@Query("select * from words WHERE category_id LIKE :categoryId")
     fun observeAll(categoryId: Long): Flow<List<CategoryDBO>>*/

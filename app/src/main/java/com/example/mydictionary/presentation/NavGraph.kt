@@ -8,9 +8,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
 import com.example.categories.presentation.CategoriesListScreen
-import com.example.categories.presentation.CategoryWordsScreen
 import com.example.home.presentation.ui.HomeScreen
 import com.example.study.presentation.ui.StudyScreen
+import com.example.words.presentation.WordsListScreen
 import kotlinx.serialization.Serializable
 
 // main routes
@@ -61,7 +61,7 @@ fun NavGraph(
             }
             composable<CategoryWords> { backStackEntry ->
                 val categoryInfo: CategoryWords = backStackEntry.toRoute()
-                CategoryWordsScreen(categoryInfo.id)
+                WordsListScreen(categoryInfo.id)
             }
         }
     }
