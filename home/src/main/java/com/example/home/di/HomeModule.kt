@@ -6,8 +6,8 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.categories_api.domain.usecase.AddCategory
 import com.example.categories_api.domain.usecase.GetLastCategories
 import com.example.home.presentation.HomeViewModel
-import com.example.home.presentation.mapper.CategoryUiMapper
-import com.example.home.presentation.mapper.WordUiMapper
+import com.example.categories_ui.mapper.CategoryUiMapper
+import com.example.words_ui.mapper.WordUiMapper
 import com.example.words_api.domain.usecase.AddWord
 import com.example.words_api.domain.usecase.GetLastWords
 import dagger.Module
