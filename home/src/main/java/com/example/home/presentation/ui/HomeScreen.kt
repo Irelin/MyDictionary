@@ -43,7 +43,8 @@ import com.example.words_ui.ui.WordsList
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    onNavigateToDictionary: () -> Unit
+    onNavigateToCategories: () -> Unit,
+    onNavigateToCategory: (Long) -> Unit
 ) {
     val viewModelFactory = remember {
         val component = HomeComponent.create()
@@ -76,11 +77,11 @@ fun HomeScreen(
             onSaveClick = { viewModel.saveNewWord() },
             onClearClick = { viewModel.clearNewWord() })
         WordsList(wordsListUiState) {
-            ListTitle(R.string.my_words_title, onNavigateToDictionary)
+            ListTitle(R.string.my_words_title, onNavigateToCategories)
         }
 
-        CategoriesList(categoriesListUiState) {
-            ListTitle(R.string.my_categories_title, onNavigateToDictionary)
+        CategoriesList(categoriesListUiState, onNavigateToCategory) {
+            ListTitle(R.string.my_categories_title, onNavigateToCategories)
         }
         if (chooseCategoriesOpen.value) {
             ChooseCategories(

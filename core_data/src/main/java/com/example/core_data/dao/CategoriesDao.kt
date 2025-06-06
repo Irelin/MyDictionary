@@ -4,8 +4,10 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import com.example.core_data.dbo.CategoryDBO
 import com.example.core_data.dbo.CategoryInfoDBO
+import com.example.core_data.dbo.CategoryWithWordsDBO
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -21,6 +23,10 @@ interface CategoriesDao {
 
     @Query("select * from CategoryInfoDBO order by categoryId desc limit :count")
     fun observeLastCategoriesInfo(count: Int = 1): Flow<List<CategoryInfoDBO>>
+
+    @Transaction
+    @Query("SELECT * FROM categories where categoryId = :id")
+    fun getCategoryWithWords(id: Long = 1): CategoryWithWordsDBO
 
     @Insert
     suspend fun insert(category: CategoryDBO): Long
