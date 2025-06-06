@@ -149,7 +149,7 @@ fun SelectableCategory(
     checked: Boolean,
     onCategoryChecked: (Long, Boolean) -> Unit
 ) {
-    CategoryItem(category) {
+    CategoryItem(category, {}) {
         val checkedState = remember { mutableStateOf(checked) }
         Checkbox(
             checked = checkedState.value,

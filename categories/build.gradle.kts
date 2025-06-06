@@ -1,14 +1,14 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.compose.compiler)
 }
 
 apply("../commonUiModule.gradle")
 
 android {
-    namespace = "com.example.categories_ui"
+    namespace = "com.example.categories"
     compileSdk = 35
 
     defaultConfig {
@@ -51,7 +51,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
     implementation(project(":categories_api"))
+    implementation(project(":categories_ui"))
+    implementation(project(":core"))
+    implementation(project(":words_api"))
+
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 }

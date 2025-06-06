@@ -2,6 +2,7 @@ package com.example.categories_ui.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,16 +32,16 @@ import com.example.categories_ui.R
 import com.example.categories_ui.models.CategoryUI
 
 @Composable
-fun CategoriesList(categoriesListState: CategoriesListUiState, title: @Composable () -> Unit) {
+fun CategoriesList(categoriesListState: CategoriesListUiState, onCategoryClick: (Long) -> Unit, title: @Composable () -> Unit) {
     when (categoriesListState) {
         is CategoriesListUiState.Loading -> DataLoading()
-        is CategoriesListUiState.Success -> CategoriesList(categoriesListState.categories, title)
+        is CategoriesListUiState.Success -> CategoriesList(categoriesListState.categories, onCategoryClick, title)
         is CategoriesListUiState.Error -> DataLoadingError()
     }
 }
 
 @Composable
-fun CategoriesList(categories: List<CategoryUI>, title: @Composable () -> Unit) {
+private fun CategoriesList(categories: List<CategoryUI>, onCategoryClick: (Long) -> Unit, title: @Composable () -> Unit) {
     if (categories.isEmpty())
         return
     title()
@@ -52,15 +53,15 @@ fun CategoriesList(categories: List<CategoryUI>, title: @Composable () -> Unit) 
     ) {
         items(categories.sortedByDescending { it.id }) {
             key(it.id) {
-                Category(it)
+                Category(it, onCategoryClick)
             }
         }
     }
 }
 
 @Composable
-fun Category(category: CategoryUI) {
-    CategoryItem(category) {
+fun Category(category: CategoryUI, onCategoryClick: (Long) -> Unit) {
+    CategoryItem(category, onCategoryClick) {
         Image(
             painter = painterResource(id = R.drawable.icon_category_view_arrow),
             contentDescription = null,
@@ -72,13 +73,18 @@ fun Category(category: CategoryUI) {
 }
 
 @Composable
-fun CategoryItem(category: CategoryUI, rightButton: @Composable () -> Unit) {
+fun CategoryItem(
+    category: CategoryUI,
+    onCategoryClick: (Long) -> Unit,
+    rightButton: @Composable () -> Unit
+) {
     Row(
         modifier = Modifier
             .padding(vertical = 4.dp)
             .clip(shape = RoundedCornerShape(12.dp))
             .background(Color.LightGray)
             .fillMaxWidth()
+            .clickable(enabled = true, onClick = { onCategoryClick(category.id) })
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
