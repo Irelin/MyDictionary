@@ -132,7 +132,7 @@ fun ChooseCategoriesList(
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(0.dp, 400.dp),
+            .heightIn(0.dp, 1600.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(categories.sortedByDescending { it.id }) {

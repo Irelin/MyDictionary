@@ -18,7 +18,7 @@ interface CategoriesDao {
     @Query("select * from categories")
     fun observeAll(): Flow<List<CategoryDBO>>
 
-    @Query("select * from CategoryInfoDBO")
+    @Query("select * from CategoryInfoDBO order by categoryId desc")
     fun observeAllCategoriesInfo(): Flow<List<CategoryInfoDBO>>
 
     @Query("select * from CategoryInfoDBO order by categoryId desc limit :count")

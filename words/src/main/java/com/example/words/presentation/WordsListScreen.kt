@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.words.di.WordsComponent
+import com.example.words_ui.WordsListUiState
 import com.example.words_ui.ui.WordsList
 
 @Composable
@@ -39,11 +40,18 @@ fun WordsListScreen(categoryId: Long) {
             .padding(bottom = 48.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        CategoryTitle(wordsListUiState)
+        WordsList(wordsListUiState) { }
+    }
+}
+
+@Composable
+fun CategoryTitle(wordsListState: WordsListUiState) {
+    if (wordsListState is WordsListUiState.Success) {
         Text(
-            text = "Category name",
+            text = "${wordsListState.categoryName} - ${wordsListState.words.size}",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
-        WordsList(wordsListUiState) { }
     }
 }
