@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.categories_api.domain.usecase.AddCategory
+import com.example.categories_api.domain.usecase.GetAllCategories
 import com.example.categories_api.domain.usecase.GetLastCategories
 import com.example.home.presentation.HomeViewModel
 import com.example.categories_ui.mapper.CategoryUiMapper
@@ -21,7 +22,7 @@ class HomeModule {
     fun provideViewModel(
         getLastWords: GetLastWords,
         addWord: AddWord,
-        getLastCategories: GetLastCategories,
+        getAllCategories: GetAllCategories,
         addCategory: AddCategory,
         wordUiMapper: WordUiMapper,
         categoryUiMapper: CategoryUiMapper
@@ -29,7 +30,7 @@ class HomeModule {
         return HomeViewModel(
             getLastWords,
             addWord,
-            getLastCategories,
+            getAllCategories,
             addCategory,
             wordUiMapper,
             categoryUiMapper

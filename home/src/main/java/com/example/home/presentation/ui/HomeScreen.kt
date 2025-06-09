@@ -53,8 +53,9 @@ fun HomeScreen(
     val viewModel = viewModel(HomeViewModel::class, factory = viewModelFactory)
 
     val newWordUiState by viewModel.newWordUiState.collectAsState()
-    val wordsListUiState by viewModel.wordsListUiState.collectAsState()
+    val lastWordsListUiState by viewModel.lastWordsListUiState.collectAsState()
     val categoriesListUiState by viewModel.categoriesListUiState.collectAsState()
+    val lastCategoriesListUiState by viewModel.lastCategoriesListUiState.collectAsState()
     val newCategoryUiState by viewModel.newCategoryUiState.collectAsState()
 
     var chooseCategoriesOpen = remember { mutableStateOf(false) }
@@ -76,11 +77,11 @@ fun HomeScreen(
             onCategoryClick = { chooseCategoriesOpen.value = true },
             onSaveClick = { viewModel.saveNewWord() },
             onClearClick = { viewModel.clearNewWord() })
-        WordsList(wordsListUiState) {
+        WordsList(lastWordsListUiState) {
             ListTitle(R.string.my_words_title, onNavigateToCategories)
         }
 
-        CategoriesList(categoriesListUiState, onNavigateToCategory) {
+        CategoriesList(lastCategoriesListUiState, onNavigateToCategory) {
             ListTitle(R.string.my_categories_title, onNavigateToCategories)
         }
         if (chooseCategoriesOpen.value) {

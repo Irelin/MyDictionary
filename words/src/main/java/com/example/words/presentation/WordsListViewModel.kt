@@ -29,7 +29,7 @@ class WordsListViewModel @Inject constructor(
             _wordsListUiState.value = WordsListUiState.Loading
             getCategoryWords(categoryId).collect { category ->
                 _wordsListUiState.value =
-                    WordsListUiState.Success(category.words.map { wordUiMapper.map(it) })
+                    WordsListUiState.Success(category.words.map { wordUiMapper.map(it) }, category.name)
             }
         }
     }

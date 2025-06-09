@@ -3,7 +3,7 @@ package com.example.home.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.categories_api.domain.usecase.AddCategory
-import com.example.categories_api.domain.usecase.GetLastCategories
+import com.example.categories_api.domain.usecase.GetAllCategories
 import com.example.categories_ui.CategoriesListUiState
 import com.example.categories_ui.NewCategoryUiState
 import com.example.words_ui.NewWordUiState
@@ -22,7 +22,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getLastWords: GetLastWords,
     private val addNewWord: AddWord,
-    private val getLastCategories: GetLastCategories,
+    private val getAllCategories: GetAllCategories,
     private val addNewCategory: AddCategory,
     private val wordUiMapper: WordUiMapper,
     private val categoryUiMapper: CategoryUiMapper,
@@ -36,22 +36,25 @@ class HomeViewModel @Inject constructor(
     private val _newWordUiState = MutableStateFlow(NewWordUiState())
     val newWordUiState: StateFlow<NewWordUiState> = _newWordUiState.asStateFlow()
 
-    private val _wordsListUiState: MutableStateFlow<WordsListUiState> =
+    private val _lastWordsListUiState: MutableStateFlow<WordsListUiState> =
         MutableStateFlow(WordsListUiState.Loading)
-    val wordsListUiState: StateFlow<WordsListUiState> = _wordsListUiState.asStateFlow()
+    val lastWordsListUiState: StateFlow<WordsListUiState> = _lastWordsListUiState.asStateFlow()
 
     private val _newCategoryUiState = MutableStateFlow(NewCategoryUiState())
     val newCategoryUiState: StateFlow<NewCategoryUiState> = _newCategoryUiState.asStateFlow()
 
     private val _categoriesListUiState: MutableStateFlow<CategoriesListUiState> =
         MutableStateFlow(CategoriesListUiState.Loading)
-    val categoriesListUiState: StateFlow<CategoriesListUiState> = _categoriesListUiState.asStateFlow()
+    val categoriesListUiState: StateFlow<CategoriesListUiState> =
+        _categoriesListUiState.asStateFlow()
 
-    /* var wordsListUiState: WordsListUiState by mutableStateOf(WordsListUiState.Loading)
-         private set*/
+    private val _lastCategoriesListUiState: MutableStateFlow<CategoriesListUiState> =
+        MutableStateFlow(CategoriesListUiState.Loading)
+    val lastCategoriesListUiState: StateFlow<CategoriesListUiState> =
+        _lastCategoriesListUiState.asStateFlow()
 
     init {
-        getWords()
+        getLastWords()
         getCategories()
     }
 
@@ -117,11 +120,12 @@ class HomeViewModel @Inject constructor(
         updateWordCategories(mutableListOf<Long>())
     }
 
-    private fun getWords() {
+    private fun getLastWords() {
         viewModelScope.launch {
-            _wordsListUiState.value = WordsListUiState.Loading
+            _lastWordsListUiState.value = WordsListUiState.Loading
             getLastWords(MAX_WORDS_COUNT).collect { items ->
-                _wordsListUiState.value = WordsListUiState.Success(items.map { wordUiMapper.map(it) })
+                _lastWordsListUiState.value =
+                    WordsListUiState.Success(items.map { wordUiMapper.map(it) })
             }
         }
     }
@@ -129,8 +133,11 @@ class HomeViewModel @Inject constructor(
     private fun getCategories() {
         viewModelScope.launch {
             _categoriesListUiState.value = CategoriesListUiState.Loading
-            getLastCategories(MAX_CATEGORIES_COUNT).collect { items ->
-                _categoriesListUiState.value = CategoriesListUiState.Success(items.map { categoryUiMapper.map(it) })
+            getAllCategories().collect { items ->
+                _categoriesListUiState.value =
+                    CategoriesListUiState.Success(items.map { categoryUiMapper.map(it) })
+                _lastCategoriesListUiState.value = CategoriesListUiState.Success(
+                    items.take(MAX_CATEGORIES_COUNT).map { categoryUiMapper.map(it) })
             }
         }
     }
