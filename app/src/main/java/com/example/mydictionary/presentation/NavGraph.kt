@@ -9,6 +9,7 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
 import com.example.categories.presentation.CategoriesListScreen
 import com.example.home.presentation.ui.HomeScreen
+import com.example.profile.presentation.ui.ProfileScreen
 import com.example.study.presentation.ui.StudyScreen
 import com.example.words.presentation.WordsListScreen
 import kotlinx.serialization.Serializable
@@ -19,6 +20,9 @@ object Home
 
 @Serializable
 object Study
+
+@Serializable
+object Profile
 
 // route for nested dictionary graph
 @Serializable
@@ -64,5 +68,6 @@ fun NavGraph(
                 WordsListScreen(categoryInfo.id)
             }
         }
+        composable<Profile> { ProfileScreen() }
     }
 }

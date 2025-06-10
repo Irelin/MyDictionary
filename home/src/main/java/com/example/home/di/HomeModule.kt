@@ -8,6 +8,7 @@ import com.example.categories_api.domain.usecase.GetAllCategories
 import com.example.categories_api.domain.usecase.GetLastCategories
 import com.example.home.presentation.HomeViewModel
 import com.example.categories_ui.mapper.CategoryUiMapper
+import com.example.profile_api.domain.usecase.GetUserName
 import com.example.words_ui.mapper.WordUiMapper
 import com.example.words_api.domain.usecase.AddWord
 import com.example.words_api.domain.usecase.GetLastWords
@@ -20,6 +21,7 @@ class HomeModule {
     @Provides
     @HomeScope
     fun provideViewModel(
+        getUserName: GetUserName,
         getLastWords: GetLastWords,
         addWord: AddWord,
         getAllCategories: GetAllCategories,
@@ -28,6 +30,7 @@ class HomeModule {
         categoryUiMapper: CategoryUiMapper
     ): HomeViewModel {
         return HomeViewModel(
+            getUserName,
             getLastWords,
             addWord,
             getAllCategories,

@@ -59,5 +59,6 @@ enum class BottomNavigationRoutes(
 ) {
     HOME(0, R.string.route_home_title, R.drawable.ic_tab_home, Home),
     STUDY(1, R.string.route_study_title, R.drawable.ic_tab_exercise, Study),
-    DICTIONARY(2, R.string.route_dictionary_title, R.drawable.ic_tab_dictionary, CategoriesList)
+    DICTIONARY(2, R.string.route_dictionary_title, R.drawable.ic_tab_dictionary, CategoriesList),
+    PROFILE(3, R.string.route_profile_title, R.drawable.ic_tab_profile, Profile)
 }

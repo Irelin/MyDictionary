@@ -39,15 +39,15 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.12"
+        kotlinCompilerExtensionVersion = "${libs.versions.kotlinComposeCompiler}"
     }
 }
 
 dependencies {
 
     implementation(project(":words_api"))
-    implementation(project(":words_impl"))
     implementation(project(":categories_api"))
+    implementation(project(":profile_api"))
     implementation(project(":core"))
 
     implementation(libs.dagger)
