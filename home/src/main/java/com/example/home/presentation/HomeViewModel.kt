@@ -9,6 +9,7 @@ import com.example.categories_ui.NewCategoryUiState
 import com.example.words_ui.NewWordUiState
 import com.example.words_ui.WordsListUiState
 import com.example.categories_ui.mapper.CategoryUiMapper
+import com.example.profile_api.domain.usecase.GetUserName
 import com.example.words_ui.mapper.WordUiMapper
 import com.example.words_api.domain.usecase.AddWord
 import com.example.words_api.domain.usecase.GetLastWords
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
+    private val getUserName: GetUserName,
     private val getLastWords: GetLastWords,
     private val addNewWord: AddWord,
     private val getAllCategories: GetAllCategories,

@@ -1,7 +1,11 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kapt)
+    alias(libs.plugins.compose.compiler)
 }
+
+apply("../commonUiModule.gradle")
 
 android {
     namespace = "com.example.profile"
@@ -30,6 +34,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        buildConfig = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "${libs.versions.kotlinComposeCompiler}"
+    }
 }
 
 dependencies {
@@ -40,4 +51,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(project(":core"))
+    implementation(project(":profile_api"))
+    implementation(project(":categories_api"))
+    implementation(project(":words_api"))
+
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 }

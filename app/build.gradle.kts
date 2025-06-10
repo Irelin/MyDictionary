@@ -48,7 +48,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.12"
+        kotlinCompilerExtensionVersion = "${libs.versions.kotlinComposeCompiler}"
     }
     packaging {
         resources {
@@ -84,6 +84,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
     implementation(project(":home"))
+    implementation(project(":profile"))
     implementation(project(":study"))
     implementation(project(":categories"))
     implementation(project(":words"))
@@ -91,8 +92,12 @@ dependencies {
     implementation(project(":core_data"))
     implementation(project(":words_api"))
     implementation(project(":words_impl"))
+    implementation(project(":words_ui"))
     implementation(project(":categories_api"))
     implementation(project(":categories_impl"))
+    implementation(project(":categories_ui"))
+    implementation(project(":profile_api"))
+    implementation(project(":profile_impl"))
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)

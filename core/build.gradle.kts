@@ -47,4 +47,5 @@ dependencies {
 
     implementation(project(":words_api"))
     implementation(project(":categories_api"))
+    implementation(project(":profile_api"))
 }
