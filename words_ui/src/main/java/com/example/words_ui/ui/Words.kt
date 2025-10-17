@@ -1,6 +1,8 @@
 package com.example.words_ui.ui
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -57,7 +59,11 @@ fun Word(word: WordUI) {
         modifier = Modifier
             .padding(vertical = 4.dp)
             .clip(shape = RoundedCornerShape(12.dp))
-            .background(Color.LightGray)
+            .background(Color(0xFFF7F6F5))
+            .border(
+                border = BorderStroke(1.dp, Color(0xFFE8E7E6)),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
+            )
             .fillMaxWidth()
             .padding(8.dp), horizontalAlignment = Alignment.Start
     ) {

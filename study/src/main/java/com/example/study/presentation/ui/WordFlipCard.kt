@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,19 +27,18 @@ import com.example.study.presentation.models.StudyWordUI
 
 @Composable
 fun WordFlipCard(studyWord: StudyWordUI, onClick: () -> Unit) {
-    var isCardFlipped = remember { mutableStateOf(studyWord.isTranslationVisible) }
     val animDuration = 500
     val zAxisDistance = 50f //distance between camera and Card
 
     val frontColor = animateColorAsState(
-        targetValue = if (isCardFlipped.value) Color(0xFFB0E0B1) else Color(0xFF78CB94),
+        targetValue = if (studyWord.translationVisible) Color(0xFFB0E0B1) else Color(0xFF78CB94),
         animationSpec = tween(durationMillis = animDuration, easing = EaseInOut),
         label = ""
     )
 
     // rotate Y-axis with animation
     val rotateCardY = animateFloatAsState(
-        targetValue = if (isCardFlipped.value) 180f else 0f,
+        targetValue = if (studyWord.translationVisible) 180f else 0f,
         animationSpec = tween(durationMillis = animDuration, easing = EaseInOut),
         label = ""
     )
@@ -60,10 +57,7 @@ fun WordFlipCard(studyWord: StudyWordUI, onClick: () -> Unit) {
                     cameraDistance = zAxisDistance
                 }
                 .clip(RoundedCornerShape(24.dp))
-                .clickable {
-                    isCardFlipped.value = !isCardFlipped.value
-                    onClick()
-                }
+                .clickable { onClick() }
                 .background(frontColor.value),
             contentAlignment = Alignment.Center
         ) {

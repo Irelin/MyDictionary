@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -58,7 +59,7 @@ fun AddNewWord(
             .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        Button(onClick = onCategoryClick) {
+        OutlinedButton(onClick = onCategoryClick) {
             Text(text = stringResource(R.string.new_word_category_btn))
         }
         Spacer(
@@ -66,7 +67,7 @@ fun AddNewWord(
                 .height(1.dp)
                 .weight(1f)
         )
-        Button(onClick = onClearClick, modifier = Modifier.Companion.padding(horizontal = 8.dp)) {
+        OutlinedButton(onClick = onClearClick, modifier = Modifier.Companion.padding(horizontal = 8.dp)) {
             Text(text = stringResource(R.string.word_clear_btn))
         }
         Button(onClick = onSaveClick) {

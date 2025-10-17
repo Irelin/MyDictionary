@@ -29,7 +29,7 @@ fun Profile() {
     Row(
         modifier = Modifier.Companion
             .clip(shape = RoundedCornerShape(12.dp))
-            .background(Color.Companion.LightGray)
+            .background(Color(0xFFF7F6F5))
             .fillMaxWidth()
             .padding(8.dp),
         horizontalArrangement = Arrangement.Start,

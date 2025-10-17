@@ -19,7 +19,7 @@ fun DictionaryApp() {
         var selectedBottomTab by rememberSaveable { mutableIntStateOf(BottomNavigationRoutes.HOME.id) }
 
         Scaffold(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = MaterialTheme.colorScheme.background,
             bottomBar = {
                 BottomNavigationBar(selectedBottomTab) {
                     if (selectedBottomTab != it.id) {

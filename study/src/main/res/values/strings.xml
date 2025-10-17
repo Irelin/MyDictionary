@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="study_mode_title">Select study mode</string>
+    <string name="study_mode_memorize">Memorize</string>
+    <string name="study_mode_exercise">Exercise</string>
+
+    <string name="study_categories_title">Select categories</string>
+
+    <string name="study_btn_start">Start!</string>
+</resources>
