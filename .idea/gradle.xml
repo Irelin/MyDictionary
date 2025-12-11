@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/categories_ui" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core_data" />
+            <option value="$PROJECT_DIR$/core_ui" />
             <option value="$PROJECT_DIR$/home" />
             <option value="$PROJECT_DIR$/profile" />
             <option value="$PROJECT_DIR$/profile_api" />

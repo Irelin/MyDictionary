@@ -1,7 +1,9 @@
 package com.example.categories_ui.ui
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -48,7 +50,8 @@ private fun CategoriesList(categories: List<CategoryUI>, onCategoryClick: (Long)
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(0.dp, 1600.dp),
+            .heightIn(0.dp, 1600.dp)
+            .padding(top = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(categories.sortedByDescending { it.id }) {
@@ -82,7 +85,11 @@ fun CategoryItem(
         modifier = Modifier
             .padding(vertical = 4.dp)
             .clip(shape = RoundedCornerShape(12.dp))
-            .background(Color.LightGray)
+            .background(Color(0xFFF7F6F5))
+            .border(
+                border = BorderStroke(1.dp, Color(0xFFE8E7E6)),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
+            )
             .fillMaxWidth()
             .clickable(enabled = true, onClick = { onCategoryClick(category.id) })
             .padding(8.dp),

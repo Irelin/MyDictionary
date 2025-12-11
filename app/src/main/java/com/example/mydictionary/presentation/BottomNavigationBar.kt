@@ -8,14 +8,14 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -30,7 +30,7 @@ fun BottomNavigationBar(
     NavigationBar(
         Modifier.windowInsetsBottomHeight(
             WindowInsets.navigationBars.add(WindowInsets(bottom = 56.dp))
-        )
+        ), containerColor = Color(0xFFFFEAE1)
     ) {
         BottomNavigationRoutes.entries.forEach { route ->
             NavigationBarItem(
@@ -40,10 +40,11 @@ fun BottomNavigationBar(
                 onClick = { onTabClick(route) },
                 alwaysShowLabel = false,
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.secondary,
-                    selectedTextColor = MaterialTheme.colorScheme.secondary,
-                    unselectedIconColor = LocalContentColor.current,
-                    unselectedTextColor = LocalContentColor.current
+                    selectedIconColor = colorResource(com.example.home.R.color.color_selected),
+                    selectedTextColor = colorResource(com.example.home.R.color.color_selected),
+                    unselectedIconColor = colorResource(com.example.home.R.color.text_secondary_color),
+                    unselectedTextColor = colorResource(com.example.home.R.color.text_secondary_color),
+                    indicatorColor = Color.Transparent
                 ),
                 modifier = Modifier.navigationBarsPadding()
             )

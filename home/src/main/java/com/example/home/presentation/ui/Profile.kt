@@ -17,31 +17,31 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.home.R
 
 @Composable
-fun Profile() {
+fun Profile(userName: String) {
     Row(
         modifier = Modifier.Companion
+            .padding(top = 12.dp)
             .clip(shape = RoundedCornerShape(12.dp))
             .background(Color(0xFFF7F6F5))
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(all = 8.dp),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.Companion.CenterVertically
     ) {
         Image(
-            painter = painterResource(id = R.drawable.account_image_default),
+            painter = painterResource(id = R.drawable.avatar),
             contentDescription = null,
-            contentScale = ContentScale.Companion.Crop,
-            modifier = Modifier.Companion
-                .size(100.dp)
-                .clip(androidx.compose.foundation.shape.RoundedCornerShape(16.dp))
+            modifier = Modifier.size(90.dp).background(Color.White)
+                .clip(androidx.compose.foundation.shape.RoundedCornerShape(16.dp)),
+            contentScale = ContentScale.Crop
         )
         Column(
             modifier = Modifier.Companion
@@ -49,22 +49,21 @@ fun Profile() {
                 .padding(12.dp)
         ) {
             Text(
-                text = stringResource(R.string.profile_hi_user, "User"),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Companion.Bold
+                text = stringResource(R.string.profile_hi_user, " $userName"),
+                fontSize = 22.sp
             )
             Text(
                 text = stringResource(R.string.profile_learned_words, 50, 100),
                 fontSize = 14.sp,
-                color = Color.Companion.Gray
+                color = colorResource(R.color.text_secondary_color)
             )
             LinearProgressIndicator(
                 progress = { 0.5f },
                 modifier = Modifier.Companion
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
-                color = Color.Companion.Red,
-                trackColor = Color.Companion.Gray
+                color = colorResource(R.color.color_selected),
+                trackColor = colorResource(R.color.color_unselected)
             )
         }
     }

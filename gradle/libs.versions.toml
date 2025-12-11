@@ -1,5 +1,5 @@
 [versions]
-agp = "8.6.0"
+agp = "8.13.2"
 datastorePreferences = "1.1.1"
 kotlin = "2.0.0"
 kotlinComposeCompiler = "1.5.12"
@@ -21,6 +21,7 @@ hiltAndroid = "2.50"
 appcompat = "1.7.0"
 material = "1.12.0"
 dagger = "2.56.1"
+runtime = "1.10.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +54,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

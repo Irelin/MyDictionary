@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -57,8 +58,9 @@ fun HomeScreen(
     val categoriesListUiState by viewModel.categoriesListUiState.collectAsState()
     val lastCategoriesListUiState by viewModel.lastCategoriesListUiState.collectAsState()
     val newCategoryUiState by viewModel.newCategoryUiState.collectAsState()
+    val userName by viewModel.userName.collectAsState()
 
-    var chooseCategoriesOpen = remember { mutableStateOf(false) }
+    val chooseCategoriesOpen = remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -68,7 +70,7 @@ fun HomeScreen(
             .padding(bottom = 48.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Profile()
+        Profile(userName)
         LogoDictionary()
         AddNewWord(
             newWordUiState = newWordUiState,
@@ -114,7 +116,7 @@ fun LogoDictionary() {
         contentDescription = null,
         contentScale = ContentScale.FillWidth,
         modifier = Modifier
-            .padding(8.dp)
+            .padding(24.dp)
             .size(150.dp)
     )
 }
@@ -129,13 +131,16 @@ fun ListTitle(@StringRes titleRes: Int, onViewAllClick: () -> Unit) {
     ) {
         Text(
             text = stringResource(titleRes),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
+            fontSize = 22.sp
         )
         TextButton(
             onClick = onViewAllClick
         ) {
-            Text(stringResource(R.string.view_all))
+            Text(
+                stringResource(R.string.view_all),
+                fontSize = 16.sp,
+                color = colorResource(R.color.text_secondary_color)
+            )
         }
     }
 }
@@ -153,7 +158,7 @@ fun DataLoading() {
 @Preview
 @Composable
 fun AccountPreview() {
-    Profile()
+    Profile("User")
 }
 
 @Preview

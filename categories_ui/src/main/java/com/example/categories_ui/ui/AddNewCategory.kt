@@ -13,6 +13,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.categories_ui.NewCategoryUiState
 import com.example.categories_ui.R
+import com.example.core_ui.ui.ThemedButton
+import com.example.core_ui.ui.ThemedOutlinedButton
 
 @Composable
 fun AddNewCategory(
@@ -36,14 +38,11 @@ fun AddNewCategory(
             .padding(16.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        Button(
+        ThemedOutlinedButton(
             onClick = onNewCategoryCancel,
+            text = stringResource(R.string.category_cancel_btn),
             modifier = Modifier.Companion.padding(horizontal = 8.dp)
-        ) {
-            Text(text = stringResource(R.string.category_cancel_btn))
-        }
-        Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.category_save_btn))
-        }
+        )
+        ThemedButton(onClick = onSaveClick, text = stringResource(R.string.category_save_btn))
     }
 }

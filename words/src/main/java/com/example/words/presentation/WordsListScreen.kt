@@ -50,8 +50,7 @@ fun CategoryTitle(wordsListState: WordsListUiState) {
     if (wordsListState is WordsListUiState.Success) {
         Text(
             text = "${wordsListState.categoryName} - ${wordsListState.words.size}",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
+            fontSize = 22.sp
         )
     }
 }

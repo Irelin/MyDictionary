@@ -2,13 +2,12 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.kapt)
 }
 
 apply("../commonUiModule.gradle")
 
 android {
-    namespace = "com.example.words_ui"
+    namespace = "com.example.core_ui"
     compileSdk = 35
 
     defaultConfig {
@@ -44,15 +43,11 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.compose.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(project(":words_api"))
-    implementation(project(":core_ui"))
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
 }

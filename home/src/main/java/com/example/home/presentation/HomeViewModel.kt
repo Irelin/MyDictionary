@@ -35,6 +35,9 @@ class HomeViewModel @Inject constructor(
         const val MAX_CATEGORIES_COUNT = 4
     }
 
+    private val _userName = MutableStateFlow("")
+    val userName: StateFlow<String> = _userName.asStateFlow()
+
     private val _newWordUiState = MutableStateFlow(NewWordUiState())
     val newWordUiState: StateFlow<NewWordUiState> = _newWordUiState.asStateFlow()
 
@@ -56,8 +59,9 @@ class HomeViewModel @Inject constructor(
         _lastCategoriesListUiState.asStateFlow()
 
     init {
-        getLastWords()
-        getCategories()
+        loadUserName()
+        loadLastWords()
+        loadCategories()
     }
 
     fun updateWord(word: String) {
@@ -122,7 +126,13 @@ class HomeViewModel @Inject constructor(
         updateWordCategories(mutableListOf<Long>())
     }
 
-    private fun getLastWords() {
+    private fun loadUserName() {
+        viewModelScope.launch {
+            getUserName().collect { _userName.value = it }
+        }
+    }
+
+    private fun loadLastWords() {
         viewModelScope.launch {
             _lastWordsListUiState.value = WordsListUiState.Loading
             getLastWords(MAX_WORDS_COUNT).collect { items ->
@@ -132,7 +142,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getCategories() {
+    private fun loadCategories() {
         viewModelScope.launch {
             _categoriesListUiState.value = CategoriesListUiState.Loading
             getAllCategories().collect { items ->

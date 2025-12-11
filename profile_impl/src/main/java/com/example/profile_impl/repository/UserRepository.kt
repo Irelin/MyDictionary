@@ -9,7 +9,7 @@ class UserRepository @Inject constructor(private val userManager: UserManager) {
         userManager.saveUserName(name)
     }
 
-    suspend fun getUserName(): Flow<String> {
+    fun getUserName(): Flow<String> {
         return userManager.getUserName()
     }
 }

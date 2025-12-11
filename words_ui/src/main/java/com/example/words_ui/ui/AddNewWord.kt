@@ -17,6 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.core_ui.ui.ThemedButton
+import com.example.core_ui.ui.ThemedOutlinedButton
 import com.example.words_ui.NewWordUiState
 import com.example.words_ui.R
 
@@ -34,8 +36,7 @@ fun AddNewWord(
             .fillMaxWidth(),
         textAlign = TextAlign.Companion.Start,
         text = stringResource(R.string.new_word_title),
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Companion.Bold
+        fontSize = 22.sp
     )
     OutlinedTextField(
         modifier = Modifier.Companion
@@ -59,19 +60,13 @@ fun AddNewWord(
             .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        OutlinedButton(onClick = onCategoryClick) {
-            Text(text = stringResource(R.string.new_word_category_btn))
-        }
+        ThemedOutlinedButton(onClick = onCategoryClick, stringResource(R.string.new_word_category_btn))
         Spacer(
             modifier = Modifier.Companion
                 .height(1.dp)
                 .weight(1f)
         )
-        OutlinedButton(onClick = onClearClick, modifier = Modifier.Companion.padding(horizontal = 8.dp)) {
-            Text(text = stringResource(R.string.word_clear_btn))
-        }
-        Button(onClick = onSaveClick) {
-            Text(text = stringResource(R.string.word_save_btn))
-        }
+        ThemedOutlinedButton(onClick = onClearClick, stringResource(R.string.word_clear_btn), modifier = Modifier.Companion.padding(horizontal = 8.dp))
+        ThemedButton(onSaveClick, stringResource(R.string.word_save_btn))
     }
 }

@@ -5,5 +5,5 @@ import com.example.profile_impl.repository.UserRepository
 import javax.inject.Inject
 
 class GetUserNameUseCase @Inject constructor(private val userRepository: UserRepository): GetUserName {
-    override suspend fun invoke() = userRepository.getUserName()
+    override fun invoke() = userRepository.getUserName()
 }

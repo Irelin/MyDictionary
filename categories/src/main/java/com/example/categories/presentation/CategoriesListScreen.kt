@@ -42,8 +42,7 @@ fun CategoriesListScreen(onNavigateToCategory: (Long) -> Unit) {
     ) {
         Text(
             text = stringResource(R.string.categories_title),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
+            fontSize = 22.sp
         )
         CategoriesList(categoriesListUiState, onNavigateToCategory) { }
     }

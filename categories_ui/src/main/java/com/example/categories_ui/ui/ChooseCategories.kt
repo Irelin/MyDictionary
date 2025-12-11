@@ -26,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,8 @@ import com.example.categories_ui.CategoriesListUiState
 import com.example.categories_ui.NewCategoryUiState
 import com.example.categories_ui.R
 import com.example.categories_ui.models.CategoryUI
+import com.example.core_ui.ui.ThemedButton
+import com.example.core_ui.ui.ThemedOutlinedButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,7 +57,11 @@ fun ChooseCategories(
             { chooseCategoriesOpen.value = true }
         }
 
-    ModalBottomSheet(onDismissRequest = onDismiss, modifier = Modifier.fillMaxHeight()) {
+    ModalBottomSheet(
+        onDismissRequest = onDismiss,
+        modifier = Modifier.fillMaxHeight(),
+        containerColor = Color.White
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -70,8 +77,7 @@ fun ChooseCategories(
             }
             Text(
                 text = stringResource(titleRes),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Companion.Bold
+                fontSize = 22.sp
             )
             Spacer(
                 modifier = Modifier.Companion
@@ -119,20 +125,18 @@ fun ChooseCategoriesList(
             .padding(16.dp),
         horizontalArrangement = Arrangement.End
     ) {
-        Button(
+        ThemedOutlinedButton(
             onClick = onNewCategoryClick,
+            text = stringResource(R.string.new_category_btn),
             modifier = Modifier.Companion.padding(horizontal = 8.dp)
-        ) {
-            Text(text = stringResource(R.string.new_category_btn))
-        }
-        Button(onClick = onSave) {
-            Text(text = stringResource(R.string.category_save_btn))
-        }
+        )
+        ThemedButton(onClick = onSave, text = stringResource(R.string.category_save_btn))
     }
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(0.dp, 1600.dp),
+            .heightIn(0.dp, 1600.dp)
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(categories.sortedByDescending { it.id }) {

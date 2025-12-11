@@ -42,7 +42,8 @@ fun WordsList(words: List<WordUI>, title: @Composable () -> Unit) {
     LazyColumn(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(0.dp, 400.dp),
+            .heightIn(0.dp, 400.dp)
+            .padding(top = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         items(words) {

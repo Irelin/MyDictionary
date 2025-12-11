@@ -52,6 +52,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(project(":categories_api"))
+    implementation(project(":core_ui"))
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 }
