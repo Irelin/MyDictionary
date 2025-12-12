@@ -1,7 +1,7 @@
-package com.example.categories.di
+package com.example.categories_impl.di
 
 import androidx.lifecycle.ViewModelProvider
-import com.example.categories.presentation.CategoriesListViewModel
+import com.example.categories_impl.presentation.CategoriesListViewModel
 import com.example.core.di.AppComponent
 import com.example.core.di.BaseApp
 import dagger.Component

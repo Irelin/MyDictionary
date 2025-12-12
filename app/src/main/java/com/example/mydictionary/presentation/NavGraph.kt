@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
-import com.example.categories.presentation.CategoriesListScreen
+import com.example.categories_impl.presentation.CategoriesListScreen
 import com.example.home.presentation.ui.HomeScreen
 import com.example.profile_impl.presentation.ui.ProfileScreen
 import com.example.study_impl.presentation.ui.StudyScreen
@@ -24,9 +24,9 @@ object Study
 @Serializable
 object Profile
 
-// route for nested dictionary graph
+// route for nested vocabulary graph
 @Serializable
-object Dictionary
+object Vocabulary
 
 // routes inside nested dictionary graph
 @Serializable
@@ -47,15 +47,15 @@ fun NavGraph(
                 modifier = modifier,
                 {
                     navController.navigate(route = CategoriesList)
-                    onInnerNavigation(BottomNavigationRoutes.DICTIONARY.id)
+                    onInnerNavigation(BottomNavigationRoutes.VOCABULARY.id)
                 },
                 {
                     navController.navigate(route = CategoryWords(it))
-                    onInnerNavigation(BottomNavigationRoutes.DICTIONARY.id)
+                    onInnerNavigation(BottomNavigationRoutes.VOCABULARY.id)
                 })
         }
         composable<Study> { StudyScreen() }
-        navigation<Dictionary>(startDestination = CategoriesList) {
+        navigation<Vocabulary>(startDestination = CategoriesList) {
             composable<CategoriesList> {
                 CategoriesListScreen {
                     navController.navigate(

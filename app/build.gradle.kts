@@ -83,11 +83,11 @@ dependencies {
     api(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
-    implementation(project(":home"))
-    implementation(project(":categories"))
+
     implementation(project(":core"))
     implementation(project(":core_ui"))
     implementation(project(":core_data"))
+    implementation(project(":home"))
     implementation(project(":words_api"))
     implementation(project(":words_impl"))
     implementation(project(":words_ui"))

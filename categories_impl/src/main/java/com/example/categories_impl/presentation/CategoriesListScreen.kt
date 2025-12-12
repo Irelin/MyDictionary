@@ -1,4 +1,4 @@
-package com.example.categories.presentation
+package com.example.categories_impl.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -14,12 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.categories.R
-import com.example.categories.di.CategoriesComponent
+import com.example.categories_impl.R
+import com.example.categories_impl.di.CategoriesComponent
 import com.example.categories_ui.ui.CategoriesList
 
 @Composable

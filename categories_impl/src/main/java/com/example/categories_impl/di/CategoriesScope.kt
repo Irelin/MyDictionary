@@ -1,4 +1,4 @@
-package com.example.categories.di
+package com.example.categories_impl.di
 
 import javax.inject.Scope
 

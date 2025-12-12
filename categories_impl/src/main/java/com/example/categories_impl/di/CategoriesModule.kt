@@ -1,11 +1,11 @@
-package com.example.categories.di
+package com.example.categories_impl.di
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.categories.presentation.CategoriesListViewModel
 import com.example.categories_api.domain.usecase.AddCategory
 import com.example.categories_api.domain.usecase.GetAllCategories
+import com.example.categories_impl.presentation.CategoriesListViewModel
 import com.example.categories_ui.mapper.CategoryUiMapper
 import dagger.Module
 import dagger.Provides
