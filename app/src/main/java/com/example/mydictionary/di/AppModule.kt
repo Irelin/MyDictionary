@@ -1,11 +1,6 @@
 package com.example.mydictionary.di
 
 import android.content.Context
-import com.example.mydictionary.BuildConfig
-import com.example.mydictionary.network.TranslateApi
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
 
 //@Module
 class AppModule(private val appContext: Context) {

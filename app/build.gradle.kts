@@ -76,13 +76,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation(libs.retrofit.adapters.result)
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    api(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.datastore.preferences)
 
     implementation(project(":core"))
     implementation(project(":core_ui"))

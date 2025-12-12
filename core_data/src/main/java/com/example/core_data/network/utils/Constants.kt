@@ -1,4 +1,4 @@
-package com.example.mydictionary.network.utils
+package com.example.core_data.network.utils
 
 object Constants {
     const val CONTENT_TYPE = "application/json"

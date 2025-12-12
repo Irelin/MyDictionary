@@ -1,4 +1,4 @@
-package com.example.mydictionary.network.utils
+package com.example.core_data.network.utils
 
 import okhttp3.Interceptor
 import okhttp3.Response

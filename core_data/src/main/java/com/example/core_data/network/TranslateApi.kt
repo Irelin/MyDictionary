@@ -1,7 +1,7 @@
-package com.example.mydictionary.network
+package com.example.core_data.network
 
-import com.example.mydictionary.network.utils.Constants
-import com.example.mydictionary.network.utils.TimeApiKeyInterceptor
+import com.example.core_data.network.utils.Constants
+import com.example.core_data.network.utils.TimeApiKeyInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.retrofit.adapters.result.ResultCallAdapterFactory
 import kotlinx.serialization.json.Json

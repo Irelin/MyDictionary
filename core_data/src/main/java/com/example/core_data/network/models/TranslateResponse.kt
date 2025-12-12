@@ -1,4 +1,4 @@
-package com.example.mydictionary.network.models
+package com.example.core_data.network.models
 
 import kotlinx.serialization.SerialName
 
