@@ -1,4 +1,4 @@
-package com.example.words.presentation
+package com.example.words_impl.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

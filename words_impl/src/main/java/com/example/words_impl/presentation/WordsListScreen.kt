@@ -1,4 +1,4 @@
-package com.example.words.presentation
+package com.example.words_impl.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,11 +13,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.words.di.WordsComponent
+import com.example.words_impl.di.WordsComponent
 import com.example.words_ui.WordsListUiState
 import com.example.words_ui.ui.WordsList
 

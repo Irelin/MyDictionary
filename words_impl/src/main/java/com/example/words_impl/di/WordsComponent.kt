@@ -1,9 +1,9 @@
-package com.example.words.di
+package com.example.words_impl.di
 
 import androidx.lifecycle.ViewModelProvider
 import com.example.core.di.AppComponent
 import com.example.core.di.BaseApp
-import com.example.words.presentation.WordsListViewModel
+import com.example.words_impl.presentation.WordsListViewModel
 import dagger.Component
 
 @Component(

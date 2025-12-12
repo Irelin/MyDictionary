@@ -1,4 +1,4 @@
-package com.example.words.di
+package com.example.words_impl.di
 
 import javax.inject.Scope
 

@@ -1,10 +1,10 @@
-package com.example.words.di
+package com.example.words_impl.di
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.words.presentation.WordsListViewModel
 import com.example.words_api.domain.usecase.GetCategoryWords
+import com.example.words_impl.presentation.WordsListViewModel
 import com.example.words_ui.mapper.WordUiMapper
 import dagger.Module
 import dagger.Provides

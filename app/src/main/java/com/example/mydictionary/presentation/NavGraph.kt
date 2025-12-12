@@ -11,7 +11,7 @@ import com.example.categories.presentation.CategoriesListScreen
 import com.example.home.presentation.ui.HomeScreen
 import com.example.profile_impl.presentation.ui.ProfileScreen
 import com.example.study_impl.presentation.ui.StudyScreen
-import com.example.words.presentation.WordsListScreen
+import com.example.words_impl.presentation.WordsListScreen
 import kotlinx.serialization.Serializable
 
 // main routes
