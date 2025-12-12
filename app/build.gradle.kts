@@ -84,7 +84,6 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.datastore.preferences)
     implementation(project(":home"))
-    implementation(project(":study"))
     implementation(project(":categories"))
     implementation(project(":words"))
     implementation(project(":core"))
@@ -98,6 +97,8 @@ dependencies {
     implementation(project(":categories_ui"))
     implementation(project(":profile_api"))
     implementation(project(":profile_impl"))
+    implementation(project(":study_api"))
+    implementation(project(":study_impl"))
 
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)

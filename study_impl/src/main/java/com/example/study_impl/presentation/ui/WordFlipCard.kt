@@ -1,4 +1,4 @@
-package com.example.study.presentation.ui
+package com.example.study_impl.presentation.ui
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.EaseInOut
@@ -23,7 +23,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.study.presentation.models.StudyWordUI
+import com.example.study_impl.presentation.models.StudyWordUI
 
 @Composable
 fun WordFlipCard(studyWord: StudyWordUI, onClick: () -> Unit) {

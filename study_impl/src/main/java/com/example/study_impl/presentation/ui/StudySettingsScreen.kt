@@ -1,4 +1,4 @@
-package com.example.study.presentation.ui
+package com.example.study_impl.presentation.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -14,8 +14,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.example.study.R
-import com.example.study.presentation.models.StudyScreenMode
+import com.example.study_impl.R
+import com.example.study_impl.presentation.models.StudyScreenMode
 
 @Composable
 fun StudySettingsScreen() {

@@ -1,6 +1,6 @@
-package com.example.study
+package com.example.study_impl
 
-import com.example.study.presentation.models.StudyWordUI
+import com.example.study_impl.presentation.models.StudyWordUI
 
 open class StudyUiState(open val words: List<StudyWordUI>)
 

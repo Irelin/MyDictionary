@@ -1,4 +1,4 @@
-package com.example.study.presentation.ui
+package com.example.study_impl.presentation.ui
 
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
@@ -35,10 +35,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.study.ExerciseUiState
-import com.example.study.di.StudyComponent
-import com.example.study.presentation.StudyViewModel
-import com.example.study.presentation.models.StudyScreenMode
+import com.example.study_impl.di.StudyComponent
+import com.example.study_impl.presentation.StudyViewModel
+import com.example.study_impl.presentation.models.StudyScreenMode
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

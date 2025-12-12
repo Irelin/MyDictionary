@@ -22,9 +22,9 @@ dependencyResolutionManagement {
 rootProject.name = "MyDictionary"
 include(":app")
 include(":home")
-include(":study")
 include(":core")
 include(":core_data")
+include(":core_ui")
 include(":words_impl")
 include(":words_api")
 include(":categories")
@@ -37,4 +37,4 @@ include(":study_api")
 include(":study_impl")
 include(":profile_api")
 include(":profile_impl")
-include(":core_ui")
+

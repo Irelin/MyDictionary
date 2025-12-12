@@ -1,9 +1,9 @@
-package com.example.study.di
+package com.example.study_impl.di
 
 import androidx.lifecycle.ViewModelProvider
 import com.example.core.di.AppComponent
 import com.example.core.di.BaseApp
-import com.example.study.presentation.StudyViewModel
+import com.example.study_impl.presentation.StudyViewModel
 import dagger.Component
 
 @Component(modules = [StudyModule::class], dependencies = [AppComponent::class])

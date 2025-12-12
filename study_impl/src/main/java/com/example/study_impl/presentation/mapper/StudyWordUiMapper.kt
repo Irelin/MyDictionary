@@ -1,7 +1,7 @@
-package com.example.study.presentation.mapper
+package com.example.study_impl.presentation.mapper
 
-import com.example.study.presentation.models.StudyWordUI
-import com.example.study.presentation.models.WordUI
+import com.example.study_impl.presentation.models.StudyWordUI
+import com.example.study_impl.presentation.models.WordUI
 import com.example.words_api.domain.models.Word
 import javax.inject.Inject
 

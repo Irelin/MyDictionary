@@ -1,9 +1,9 @@
-package com.example.study.presentation
+package com.example.study_impl.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.study.StudyUiState
-import com.example.study.presentation.mapper.StudyWordUiMapper
+import com.example.study_impl.StudyUiState
+import com.example.study_impl.presentation.mapper.StudyWordUiMapper
 import com.example.words_api.domain.usecase.GetLastWords
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

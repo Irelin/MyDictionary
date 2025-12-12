@@ -1,4 +1,4 @@
-package com.example.study.presentation.models
+package com.example.study_impl.presentation.models
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
