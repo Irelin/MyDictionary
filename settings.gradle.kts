@@ -23,7 +23,6 @@ rootProject.name = "MyDictionary"
 include(":app")
 include(":home")
 include(":study")
-include(":profile")
 include(":core")
 include(":core_data")
 include(":words_impl")

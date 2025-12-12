@@ -1,11 +1,11 @@
-package com.example.profile.di
+package com.example.profile_impl.di
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.profile.presentation.ProfileViewModel
 import com.example.profile_api.domain.usecase.GetUserName
 import com.example.profile_api.domain.usecase.SetUserName
+import com.example.profile_impl.presentation.ProfileViewModel
 import dagger.Module
 import dagger.Provides
 import javax.inject.Provider

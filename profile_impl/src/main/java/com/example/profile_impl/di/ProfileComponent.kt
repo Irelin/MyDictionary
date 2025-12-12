@@ -1,9 +1,9 @@
-package com.example.profile.di
+package com.example.profile_impl.di
 
 import androidx.lifecycle.ViewModelProvider
 import com.example.core.di.AppComponent
 import com.example.core.di.BaseApp
-import com.example.profile.presentation.ProfileViewModel
+import com.example.profile_impl.presentation.ProfileViewModel
 import dagger.Component
 
 @Component(

@@ -1,8 +1,8 @@
-package com.example.profile.presentation
+package com.example.profile_impl.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.profile.presentation.ui.ProfileUiState
+import com.example.profile_impl.presentation.ui.ProfileUiState
 import com.example.profile_api.domain.usecase.GetUserName
 import com.example.profile_api.domain.usecase.SetUserName
 import kotlinx.coroutines.flow.MutableStateFlow

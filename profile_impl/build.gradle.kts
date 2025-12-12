@@ -2,7 +2,10 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.compose.compiler)
 }
+
+apply("../commonUiModule.gradle")
 
 android {
     namespace = "com.example.profile_impl"
@@ -31,6 +34,13 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        buildConfig = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "${libs.versions.kotlinComposeCompiler}"
+    }
 }
 
 dependencies {
@@ -45,6 +55,9 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
-    implementation(project(":profile_api"))
+    implementation(project(":core"))
     implementation(project(":core_data"))
+    implementation(project(":categories_api"))
+    implementation(project(":profile_api"))
+    implementation(project(":words_api"))
 }

@@ -1,4 +1,4 @@
-package com.example.profile.presentation.ui
+package com.example.profile_impl.presentation.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
@@ -31,8 +31,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.profile.di.ProfileComponent
-import com.example.profile.presentation.ProfileViewModel
+import com.example.profile_impl.di.ProfileComponent
+import com.example.profile_impl.presentation.ProfileViewModel
 
 @Composable
 fun ProfileScreen() {
