@@ -17,7 +17,6 @@ retrofit = "2.11.0"
 kotlin-serialization-json = "1.6.3"
 retrofit2KotlinxSerializationConverter = "1.0.0"
 retrofitAdaptersResult = "1.0.9"
-hiltAndroid = "2.50"
 appcompat = "1.7.0"
 material = "1.12.0"
 dagger = "2.56.1"
@@ -60,7 +59,6 @@ androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

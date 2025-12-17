@@ -49,7 +49,7 @@ fun Profile(userName: String) {
                 .padding(12.dp)
         ) {
             Text(
-                text = stringResource(R.string.profile_hi_user, " $userName"),
+                text = stringResource(R.string.profile_hi_user, if (userName.isEmpty()) "" else " $userName"),
                 fontSize = 22.sp
             )
             Text(

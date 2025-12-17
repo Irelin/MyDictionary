@@ -156,7 +156,7 @@ class HomeViewModel @Inject constructor(
 
     private fun resetNewWordState() {
         _newWordUiState.update { currentState ->
-            currentState.copy(word = "", translation = "", isInvalidWord = false)
+            currentState.copy(word = "", translation = "", isInvalidWord = false, categories = mutableListOf())
         }
     }
 
